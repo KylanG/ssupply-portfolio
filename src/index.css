@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "ApfelGrotezk";
+  src: url("/fonts/ApfelGrotezk-Regular.woff2") format("woff2");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Bueno";
+  src: url("/fonts/6849a000350c88ee79310a0c_Bueno-Bold.woff2") format("woff2");
+  font-weight: bold;
+}
+
+@theme {
+  --color-black: #000;
+  --color-white: #fff;
+  --color-off-white: #f5f5f5;
+
+  --font-primary: "Bueno", sans-serif;
+  --font-secondary: "ApfelGrotezk", sans-serif;
+} 
