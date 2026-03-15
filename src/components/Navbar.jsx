@@ -8,7 +8,7 @@ export default function Navbar({ darkMode, setDarkMode }) {
       <div className="flex justify-between items-center px-4 py-3">
         <div className="px-3 py-1">
           <a href="/">
-            <img src="/src/assets/ssupply-logo.svg" 
+            <img src="/ssupply-logo.svg" 
             className={`transition-all duration-300 ${darkMode ? 'invert' : ''}`}
             />
           </a>
