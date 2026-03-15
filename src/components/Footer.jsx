@@ -4,7 +4,7 @@ export default function Footer({ darkMode }) {
       <p>© 2026 SSUPPLY – All rights reserved</p>
       <div className="flex gap-6">
         <a href="https://www.linkedin.com/in/kylan-sean-groen/" target="_blank" className="underline">Linkedin</a>
-        <a href="https://www.linkedin.com/in/kylan-sean-groen/" target="_blank" className="underline">Github</a>
+        <a href="https://github.com/KylanG" target="_blank" className="underline">Github</a>
         <a href="https://soundcloud.com/ssupply" target="_blank" className="underline">Soundcloud</a>
       </div>
     </footer>
