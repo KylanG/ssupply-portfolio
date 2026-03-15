@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 
@@ -11,7 +12,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />
-          <Route path="*" element={<NotFound darkMode={darkMode} />} />
+          <Route path="*" element={<NotFound darkMode={darkMode} setDarkMode={setDarkMode} />} />
         </Routes>
       </BrowserRouter>
     </div>
