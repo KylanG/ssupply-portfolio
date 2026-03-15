@@ -15,7 +15,7 @@ export default function Hero({ darkMode }) {
             <a href="mailto:info@seansupply.com" className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${darkMode ? 'border-white bg-white text-black' : 'border-black bg-black text-white'}`}>
               <span>Say hello</span>👋🏻
             </a>
-            <a href="#" className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${darkMode ? 'border-white text-white' : 'border-black text-black'}`}>
+            <a href="/kylan-groen-cv.pdf" download className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${darkMode ? 'border-white text-white' : 'border-black text-black'}`}>
               <span>Download CV</span>🔗
             </a>
           </div>
