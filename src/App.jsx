@@ -1,11 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem('darkMode') === 'true'
+  })
+
+  useEffect(() => {
+    localStorage.setItem('darkMode', darkMode)
+  }, [darkMode])
 
   return (
     <div className={`transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
