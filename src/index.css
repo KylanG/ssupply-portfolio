@@ -19,4 +19,34 @@
 
   --font-primary: "Bueno", sans-serif;
   --font-secondary: "ApfelGrotezk", sans-serif;
-} 
+}
+
+.nav-link {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.nav-text {
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.nav-text.first {
+  transform: translateY(0%);
+}
+
+.nav-text.second {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(100%);
+}
+
+.nav-link:hover .nav-text.first {
+  transform: translateY(-100%);
+}
+
+.nav-link:hover .nav-text.second {
+  transform: translateY(0%);
+}
