@@ -6,7 +6,7 @@ export default function Hero({ darkMode }) {
             Something exciting is coming,<br />
             check back soon! 👋🏻
           </h1>
-          <p className={`text-base md:text-lg font-secondary max-w-xl mb-8 ${darkMode ? 'text-white' : 'text-gray-600'}`}>
+          <p className={`text-base md:text-lg font-secondary max-w-xl mb-8 ${darkMode ? 'text-white' : 'text-black'}`}>
             In the meantime feel free to reach out at{" "}
             <a href="mailto:info@seansupply.com" className="underline">info@seansupply.com</a>
           </p>
