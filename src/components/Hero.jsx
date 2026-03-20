@@ -1,6 +1,6 @@
 export default function Hero({ darkMode }) {
     return (
-      <section className="relative h-full flex flex-col items-center justify-center text-center px-6">
+      <section className="relative h-screen flex flex-col items-center justify-center text-center px-6">
         <div className="relative z-10 flex flex-col items-center">
           <h1 className="text-3xl md:text-5xl font-primary uppercase mb-4">
             Something exciting is coming,<br />

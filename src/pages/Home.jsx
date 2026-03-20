@@ -5,7 +5,7 @@ import OutlineText from '../assets/outline-text.svg'
 
 export default function Home({ darkMode, setDarkMode }) {
   return (
-    <div className="relative h-screen flex flex-col overflow-hidden">
+    <div className="relative min-h-screen flex flex-col">
       <img
         src={OutlineText}
         className={`absolute w-full bottom-0 select-none pointer-events-none z-0 transition-opacity duration-300 ${darkMode ? 'opacity-10' : 'opacity-50'}`}

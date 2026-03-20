@@ -7,20 +7,45 @@ export default function Footer({ darkMode }) {
 
   return (
     <footer className={`relative z-10 flex flex-col md:flex-row justify-between items-center px-8 py-6 font-secondary text-sm gap-4 transition-colors duration-300 ${darkMode ? "text-white" : "text-black"}`}>
-      <p>© 2026 SSUPPLY – All rights reserved</p>
-      <div className="flex gap-6">
-        {links.map(({ label, href }) => (
-          <a
-            key={label}
-            href={href}
-            target="_blank"
-            rel="noreferrer"
-            className="nav-link"
-          >
-            <span className="nav-text first">{label}</span>
-            <span className="nav-text second">{label}</span>
-          </a>
-        ))}
+      <div className="flex-col w-full justify-center justify-items-center">
+        <div className="flex-col justify-items-center py-24 w-full">
+          <h1 className="text-3xl md:text-4xl text-center font-primary uppercase mb-4">
+            Let’s build something awesome,<br></br>or just share a friendly wave!  👋🏻
+          </h1>
+          
+          <p className={`text-base md:text-lg font-secondary text-center max-w-xl mb-8 ${darkMode ? 'text-white' : 'text-black'}`}>
+            Feel free to reach out at{" "}
+            <a href="mailto:info@seansupply.com" className="underline">info@seansupply.com</a>
+          </p>
+
+          <div className="flex flex-col md:flex-row gap-3">
+            <a href="mailto:info@seansupply.com" className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${darkMode ? 'border-white bg-white text-black' : 'border-black bg-black text-white'}`}>
+              <span>Say hello</span>👋🏻
+            </a>
+            <a href="/kylan-groen-cv.pdf" target="_blank" rel="noopener noreferrer" className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${darkMode ? 'border-white text-white' : 'border-black text-black'}`}>
+              <span>Download CV</span>🔗
+            </a>
+          </div>
+        </div>
+
+        <div className="flex justify-between w-full">
+        <p>© 2026 SSUPPLY – All rights reserved</p>
+
+          <div className="flex gap-6">
+          {links.map(({ label, href }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noreferrer"
+              className="nav-link"
+            >
+              <span className="nav-text first">{label}</span>
+              <span className="nav-text second">{label}</span>
+            </a>
+          ))}
+        </div>
+      </div>    
       </div>
     </footer>
   );
