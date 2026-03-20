@@ -3,12 +3,10 @@ export default function Hero({ darkMode }) {
       <section className="relative h-screen flex flex-col items-center justify-center text-center px-6">
         <div className="relative z-10 flex flex-col items-center">
           <h1 className="text-3xl md:text-5xl font-primary uppercase mb-4">
-            Something exciting is coming,<br />
-            check back soon! 👋🏻
+            Hi! I’m Kylan, a front-end<br></br>developer & web designer 👋🏻
           </h1>
           <p className={`text-base md:text-lg font-secondary max-w-xl mb-8 ${darkMode ? 'text-white' : 'text-black'}`}>
-            In the meantime feel free to reach out at{" "}
-            <a href="mailto:info@seansupply.com" className="underline">info@seansupply.com</a>
+          I’m a developer and web designer based in Rotterdam, passionate<br></br>about creativity and bringing pixel-perfect designs to life.
           </p>
   
           <div className="flex flex-col md:flex-row gap-3">
