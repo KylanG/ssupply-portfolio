@@ -29,7 +29,7 @@ export default function Footer({ darkMode }) {
         </div>
 
         <div className="flex justify-between w-full text-sm">
-        <p>© 2026 SSUPPLY – All rights reserved</p>
+        <p>© {new Date().getFullYear()} SSUPPLY – All rights reserved</p>
 
           <div className="flex gap-6">
           {links.map(({ label, href }) => (
