@@ -73,21 +73,15 @@ export default function MusicSection({ darkMode }) {
         <div className="flex justify-center gap-3 flex-wrap">
           <a
             href="/music#releases"
-            className={`flex items-center gap-2 px-6 py-3 rounded-full border font-secondary leading-none transition-colors duration-300 ${
-              darkMode ? 'border-white bg-white text-black' : 'border-black bg-black text-white'
-            }`}
+            className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${darkMode ? 'border-white bg-white text-black' : 'border-black bg-black text-white'}`}
           >
             <span>All releases</span>
-            <span>+</span>
           </a>
           <a
             href="/music#about"
-            className={`flex items-center gap-2 px-6 py-3 rounded-full border font-secondary leading-none transition-colors duration-300 ${
-              darkMode ? 'border-white text-white' : 'border-black text-black'
-            }`}
+            className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${darkMode ? 'border-white text-white' : 'border-black text-black'}`}
           >
             <span>More about my music</span>
-            <span>→</span>
           </a>
         </div>
       </div>
@@ -168,7 +162,7 @@ export default function MusicSection({ darkMode }) {
             className={`relative z-10 rounded-3xl overflow-hidden shadow-2xl w-full max-w-sm transition-colors duration-300 ${darkMode ? 'bg-zinc-900' : 'bg-white'}`}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Album header */}
+            {/* Album art */}
             <div className="relative">
               <img
                 src={activeAlbum.images[0]?.url}
@@ -186,23 +180,21 @@ export default function MusicSection({ darkMode }) {
               </button>
             </div>
 
-            {/* Album info + embed */}
+            {/* Album info + button */}
             <div className="p-5">
               <p className="font-primary uppercase text-lg truncate mb-1">{activeAlbum.name}</p>
               <p className={`font-secondary text-xs mb-4 ${darkMode ? 'text-white/50' : 'text-black/50'}`}>
                 {activeAlbum.album_type.charAt(0).toUpperCase() + activeAlbum.album_type.slice(1)} · {activeAlbum.release_date.split('-')[0]}
               </p>
 
-              <iframe
-                src={`https://open.spotify.com/embed/album/${activeAlbum.id}?utm_source=generator&theme=0`}
-                width="100%"
-                height="152"
-                frameBorder="0"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-                title={activeAlbum.name}
-                className="rounded-xl"
-              />
+              <a
+                href={activeAlbum.external_urls.spotify}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${darkMode ? 'border-white bg-white text-black' : 'border-black bg-black text-white'}`}
+              >
+                <span>Luister op Spotify</span>
+              </a>
             </div>
           </div>
         </div>
