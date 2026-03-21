@@ -129,7 +129,7 @@ export default function MusicSection({ darkMode }) {
                 {/* Hover overlay */}
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-xl">
-                    <svg className="w-6 h-6 text-black translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M8 5v14l11-7z"/>
                     </svg>
                   </div>
