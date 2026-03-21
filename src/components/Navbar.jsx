@@ -81,10 +81,9 @@ export default function Navbar({ darkMode, setDarkMode }) {
             <a
               key={item}
               href={`/${item.toLowerCase()}`}
-              className={`nav-link font-secondary text-center py-2 ${darkMode ? 'text-white' : 'text-black'}`}
+              className={`font-secondary text-center py-2 text-1xl ${darkMode ? 'text-white' : 'text-black'}`}
             >
-              <span className="nav-text first">{item}</span>
-              <span className="nav-text second">{item}</span>
+              {item}
             </a>
           ))}
           <a href="mailto:info@seansupply.com" className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none ${darkMode ? 'border-white bg-white text-black' : 'border-black bg-black text-white'}`}>

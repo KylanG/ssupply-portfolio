@@ -4,7 +4,7 @@ export default function Hero({ darkMode, title, subtitle, buttons }) {
       <div className="relative z-10 flex flex-col items-center">
 
         {title && (
-          <h1 className="text-3xl md:text-5xl font-primary uppercase mb-4 max-w-[55%]">
+          <h1 className="text-4xl md:text-5xl font-primary uppercase mb-4 max-w-[85%] md:max-w-[60%]">
             {title}
           </h1>
         )}
@@ -16,7 +16,7 @@ export default function Hero({ darkMode, title, subtitle, buttons }) {
         )}
 
         {buttons && buttons.length > 0 && (
-          <div className="flex flex-col md:flex-row gap-3">
+          <div className="flex flex-row gap-3">
             {buttons.map((button, index) => (
               <a
                 key={index}

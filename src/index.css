@@ -13,6 +13,8 @@
 }
 
 @theme {
+--breakpoint-md: 830px;
+
   --color-black: #000;
   --color-white: #fff;
   --color-off-white: #f5f5f5;

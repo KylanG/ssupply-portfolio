@@ -18,7 +18,7 @@ export default function Footer({ darkMode }) {
             <a href="mailto:info@seansupply.com" className="underline">info@seansupply.com</a>
           </p>
 
-          <div className="flex flex-col md:flex-row gap-3">
+          <div className="flex flex-row md:flex-row gap-3">
             <a href="mailto:info@seansupply.com" className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${darkMode ? 'border-white bg-white text-black' : 'border-black bg-black text-white'}`}>
               <span>Say hello</span>👋🏻
             </a>
@@ -28,7 +28,7 @@ export default function Footer({ darkMode }) {
           </div>
         </div>
 
-        <div className="flex justify-between w-full text-sm">
+        <div className="flex justify-between items-center w-full text-sm">
         <p>© {new Date().getFullYear()} SSUPPLY – All rights reserved</p>
 
           <div className="flex gap-6">
