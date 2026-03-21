@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
+import MusicSection from '../components/MusicSection'
 import Footer from '../components/Footer'
 import OutlineText from '../assets/outline-text.svg'
 
@@ -12,15 +13,16 @@ export default function Home({ darkMode, setDarkMode }) {
       />
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
       <main className="relative z-10 flex-1">
-      <Hero
-  darkMode={darkMode}
-  title="Hi! I'm Kylan, a front-end developer & web designer 👋🏻"
-  subtitle="I'm a developer and web designer based in Rotterdam, passionate about creativity and bringing pixel-perfect designs to life."
-  buttons={[
-    { label: "Say hello", emoji: "👋🏻", href: "mailto:info@seansupply.com", filled: true },
-    { label: "Download CV", emoji: "🔗", href: "/kylan-groen-cv.pdf", external: true, filled: false },
-  ]}
-/>
+        <Hero
+          darkMode={darkMode}
+          title="Hi! I'm Kylan, a front-end developer & web designer 👋🏻"
+          subtitle="I'm a developer and web designer based in Rotterdam, passionate about creativity and bringing pixel-perfect designs to life."
+          buttons={[
+            { label: "Say hello", emoji: "👋🏻", href: "mailto:info@seansupply.com", filled: true },
+            { label: "Download CV", emoji: "🔗", href: "/kylan-groen-cv.pdf", external: true, filled: false },
+          ]}
+        />
+        <MusicSection darkMode={darkMode} />
       </main>
       <Footer darkMode={darkMode} />
     </div>
