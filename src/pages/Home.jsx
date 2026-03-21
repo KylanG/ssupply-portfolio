@@ -12,7 +12,15 @@ export default function Home({ darkMode, setDarkMode }) {
       />
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
       <main className="relative z-10 flex-1">
-        <Hero darkMode={darkMode} />
+      <Hero
+  darkMode={darkMode}
+  title="Hi! I'm Kylan, a front-end developer & web designer 👋🏻"
+  subtitle="I'm a developer and web designer based in Rotterdam, passionate about creativity and bringing pixel-perfect designs to life."
+  buttons={[
+    { label: "Say hello", emoji: "👋🏻", href: "mailto:info@seansupply.com", filled: true },
+    { label: "Download CV", emoji: "🔗", href: "/kylan-groen-cv.pdf", external: true, filled: false },
+  ]}
+/>
       </main>
       <Footer darkMode={darkMode} />
     </div>
