@@ -23,7 +23,7 @@ export default function MusicSection({ darkMode }) {
         tokenRef.current = tokenData.access_token
 
         const res = await fetch(
-          `https://api.spotify.com/v1/artists/${ARTIST_ID}/albums?include_groups=album,single&market=NL&limit=6`,
+          `https://api.spotify.com/v1/artists/${ARTIST_ID}/albums?include_groups=single&market=NL&limit=6`,
           { headers: { Authorization: `Bearer ${tokenData.access_token}` } }
         )
         const data = await res.json()
