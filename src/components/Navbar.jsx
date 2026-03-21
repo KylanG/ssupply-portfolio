@@ -3,18 +3,40 @@ import { useState } from 'react'
 export default function Navbar({ darkMode, setDarkMode }) {
   const [menuOpen, setMenuOpen] = useState(false)
 
+  const navLinks = ['Work', 'About', 'Music', 'Contact']
+
   return (
-    <nav className={`fixed w-full z-50 transition-colors duration-300 ${darkMode ? 'bg-black' : 'bg-white'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 backdrop-blur-md border-b ${
+      darkMode
+        ? 'bg-black/40 border-white/10'
+        : 'bg-white/60 border-black/10'
+    }`}>
       <div className="flex justify-between items-center px-4 py-3">
 
-        {/* Logo */}
-        <div className="px-3 py-1">
-          <a href="/">
-            <img
-              src="/ssupply-logo.svg"
-              className={`transition-all duration-300 ${darkMode ? 'invert' : ''}`}
-            />
-          </a>
+        {/* Left side: Logo + nav links */}
+        <div className="flex items-center gap-6">
+          <div className="px-3 py-1">
+            <a href="/">
+              <img
+                src="/ssupply-logo.svg"
+                className={`transition-all duration-300 ${darkMode ? 'invert' : ''}`}
+              />
+            </a>
+          </div>
+
+          {/* Desktop nav links */}
+          <div className="hidden md:flex items-center gap-6">
+            {navLinks.map((item) => (
+              <a
+                key={item}
+                href={`/${item.toLowerCase()}`}
+                className={`nav-link font-secondary text-sm ${darkMode ? 'text-white' : 'text-black'}`}
+              >
+                <span className="nav-text first">{item}</span>
+                <span className="nav-text second">{item}</span>
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* Buttons — alleen op desktop */}
@@ -54,7 +76,17 @@ export default function Navbar({ darkMode, setDarkMode }) {
 
       {/* Mobiel menu */}
       {menuOpen && (
-        <div className="flex md:hidden flex-col gap-3 px-6 pb-6">
+        <div className={`flex md:hidden flex-col gap-3 px-6 pb-6 border-t ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
+          {navLinks.map((item) => (
+            <a
+              key={item}
+              href={`/${item.toLowerCase()}`}
+              className={`nav-link font-secondary text-center py-2 ${darkMode ? 'text-white' : 'text-black'}`}
+            >
+              <span className="nav-text first">{item}</span>
+              <span className="nav-text second">{item}</span>
+            </a>
+          ))}
           <a href="mailto:info@seansupply.com" className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none ${darkMode ? 'border-white bg-white text-black' : 'border-black bg-black text-white'}`}>
             <span>Say hello</span>👋🏻
           </a>

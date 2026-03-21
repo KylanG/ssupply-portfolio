@@ -25,11 +25,13 @@
   position: relative;
   overflow: hidden;
   display: inline-block;
+  vertical-align: bottom;
 }
 
 .nav-text {
   display: block;
   transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+  line-height: 1.2;
 }
 
 .nav-text.first {
