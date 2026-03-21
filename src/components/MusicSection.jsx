@@ -11,8 +11,8 @@ export default function MusicSection({ darkMode }) {
   const sliderRef = useRef(null)
   const cardRefs = useRef([])
   const [isDragging, setIsDragging] = useState(false)
-  const [startX, setStartX] = useState(0)
-  const [scrollLeft, setScrollLeft] = useState(0)
+  const startXRef = useRef(0)
+  const scrollLeftRef = useRef(0)
 
   useEffect(() => {
     async function fetchReleases() {
@@ -43,22 +43,27 @@ export default function MusicSection({ darkMode }) {
     return () => window.removeEventListener('keydown', handleKey)
   }, [])
 
-  // Detect which card is closest to center of slider
+  // Detect which card is closest to the center of the slider viewport
   const updateCenterIndex = useCallback(() => {
     const slider = sliderRef.current
     if (!slider || cardRefs.current.length === 0) return
-    const sliderCenter = slider.scrollLeft + slider.offsetWidth / 2
+    const sliderRect = slider.getBoundingClientRect()
+    const sliderCenter = sliderRect.left + sliderRect.width / 2
+
     let closestIndex = 0
     let closestDistance = Infinity
+
     cardRefs.current.forEach((card, i) => {
       if (!card) return
-      const cardCenter = card.offsetLeft + card.offsetWidth / 2
+      const cardRect = card.getBoundingClientRect()
+      const cardCenter = cardRect.left + cardRect.width / 2
       const distance = Math.abs(cardCenter - sliderCenter)
       if (distance < closestDistance) {
         closestDistance = distance
         closestIndex = i
       }
     })
+
     setCenterIndex(closestIndex)
   }, [])
 
@@ -69,42 +74,53 @@ export default function MusicSection({ darkMode }) {
     return () => slider.removeEventListener('scroll', updateCenterIndex)
   }, [updateCenterIndex])
 
-  // Set center index after albums load
+  // Run after albums load to set initial center
   useEffect(() => {
-    if (albums.length > 0) setTimeout(updateCenterIndex, 100)
+    if (albums.length > 0) {
+      setTimeout(() => {
+        // Scroll to center the first card
+        const slider = sliderRef.current
+        const firstCard = cardRefs.current[0]
+        if (slider && firstCard) {
+          const sliderCenter = slider.offsetWidth / 2
+          const cardCenter = firstCard.offsetLeft + firstCard.offsetWidth / 2
+          slider.scrollLeft = cardCenter - sliderCenter
+        }
+        updateCenterIndex()
+      }, 100)
+    }
   }, [albums, updateCenterIndex])
 
   // Get 3D transform based on distance from center
   function getCardStyle(index) {
     const distance = index - centerIndex
     const absDistance = Math.abs(distance)
-    const rotateY = distance * 18
-    const translateX = distance * 8
-    const scale = absDistance === 0 ? 1 : absDistance === 1 ? 0.88 : 0.76
-    const translateZ = absDistance === 0 ? 0 : absDistance === 1 ? -60 : -120
-    const opacity = absDistance > 2 ? 0.4 : absDistance === 2 ? 0.6 : absDistance === 1 ? 0.85 : 1
+    const rotateY = distance * 20
+    const scale = absDistance === 0 ? 1 : absDistance === 1 ? 0.87 : 0.74
+    const translateZ = absDistance === 0 ? 0 : absDistance === 1 ? -50 : -100
+    const opacity = absDistance > 2 ? 0.35 : absDistance === 2 ? 0.55 : absDistance === 1 ? 0.82 : 1
     const zIndex = 10 - absDistance
 
     return {
-      transform: `perspective(1000px) rotateY(${rotateY}deg) translateX(${translateX}px) translateZ(${translateZ}px) scale(${scale})`,
+      transform: `perspective(1200px) rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`,
       opacity,
       zIndex,
-      transition: 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.5s ease',
+      transition: 'transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.45s ease',
     }
   }
 
   // Drag to scroll
   const onMouseDown = (e) => {
     setIsDragging(false)
-    setStartX(e.pageX - sliderRef.current.offsetLeft)
-    setScrollLeft(sliderRef.current.scrollLeft)
+    startXRef.current = e.pageX - sliderRef.current.offsetLeft
+    scrollLeftRef.current = sliderRef.current.scrollLeft
   }
   const onMouseMove = (e) => {
     if (!e.buttons) return
     const x = e.pageX - sliderRef.current.offsetLeft
-    const walk = (x - startX) * 1.5
+    const walk = (x - startXRef.current) * 1.5
     if (Math.abs(walk) > 5) setIsDragging(true)
-    sliderRef.current.scrollLeft = scrollLeft - walk
+    sliderRef.current.scrollLeft = scrollLeftRef.current - walk
   }
   const onMouseUp = () => setTimeout(() => setIsDragging(false), 0)
 
@@ -153,8 +169,13 @@ export default function MusicSection({ darkMode }) {
       {!loading && !error && (
         <div
           ref={sliderRef}
-          className="flex gap-5 overflow-x-auto px-[40%] pb-8 cursor-grab active:cursor-grabbing select-none"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          className="flex gap-8 overflow-x-auto pb-8 cursor-grab active:cursor-grabbing select-none"
+          style={{
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            paddingLeft: '50%',
+            paddingRight: '50%',
+          }}
           onMouseDown={onMouseDown}
           onMouseMove={onMouseMove}
           onMouseUp={onMouseUp}
@@ -178,8 +199,6 @@ export default function MusicSection({ darkMode }) {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   draggable={false}
                 />
-
-                {/* Hover overlay */}
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-xl">
                     <svg className="w-6 h-6 text-black translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
@@ -189,7 +208,7 @@ export default function MusicSection({ darkMode }) {
                 </div>
               </div>
 
-              {/* Album info — only show for center card */}
+              {/* Album info — only visible for center card */}
               <div className={`mt-3 px-1 transition-opacity duration-300 ${index === centerIndex ? 'opacity-100' : 'opacity-0'}`}>
                 <p className="font-primary uppercase text-sm truncate">{album.name}</p>
                 <p className={`font-secondary text-xs mt-0.5 ${darkMode ? 'text-white/50' : 'text-black/50'}`}>
@@ -208,7 +227,6 @@ export default function MusicSection({ darkMode }) {
           onClick={() => setModalAlbum(null)}
         >
           <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
-
           <div
             className={`relative z-10 rounded-3xl overflow-hidden shadow-2xl w-full max-w-sm ${darkMode ? 'bg-zinc-900' : 'bg-white'}`}
             onClick={(e) => e.stopPropagation()}
@@ -228,13 +246,11 @@ export default function MusicSection({ darkMode }) {
                 </svg>
               </button>
             </div>
-
             <div className="p-5">
               <p className="font-primary uppercase text-lg truncate mb-1">{modalAlbum.name}</p>
               <p className={`font-secondary text-xs mb-4 ${darkMode ? 'text-white/50' : 'text-black/50'}`}>
                 {modalAlbum.album_type.charAt(0).toUpperCase() + modalAlbum.album_type.slice(1)} · {modalAlbum.release_date.split('-')[0]}
               </p>
-
               <a
                 href={modalAlbum.external_urls.spotify}
                 target="_blank"
