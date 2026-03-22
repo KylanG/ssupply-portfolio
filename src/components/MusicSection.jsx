@@ -139,13 +139,13 @@ export default function MusicSection({ darkMode }) {
             href="/music#releases"
             className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${darkMode ? 'border-white bg-white text-black' : 'border-black bg-black text-white'}`}
           >
-            <span>All releases</span>
+            <span>All releases</span>💿
           </a>
           <a
             href="/music#about"
             className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${darkMode ? 'border-white text-white' : 'border-black text-black'}`}
           >
-            <span>More about my music</span>
+            <span>More about my music</span>→
           </a>
         </div>
       </div>
