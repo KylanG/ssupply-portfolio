@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 const ARTIST_ID = '3TVXtAsR1Inumwj472S9r4' // Replace with your Spotify artist ID
 
@@ -7,12 +7,10 @@ export default function MusicSection({ darkMode }) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [modalAlbum, setModalAlbum] = useState(null)
-  const [centerIndex, setCenterIndex] = useState(0)
-  const sliderRef = useRef(null)
-  const cardRefs = useRef([])
-  const [isDragging, setIsDragging] = useState(false)
-  const startXRef = useRef(0)
-  const scrollLeftRef = useRef(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const isDragging = useRef(false)
+  const startX = useRef(0)
+  const dragDelta = useRef(0)
 
   useEffect(() => {
     async function fetchReleases() {
@@ -36,99 +34,83 @@ export default function MusicSection({ darkMode }) {
     fetchReleases()
   }, [])
 
-  // Close modal on Escape
   useEffect(() => {
     const handleKey = (e) => { if (e.key === 'Escape') setModalAlbum(null) }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
   }, [])
 
-  // Detect which card is closest to the center of the slider viewport
-  const updateCenterIndex = useCallback(() => {
-    const slider = sliderRef.current
-    if (!slider || cardRefs.current.length === 0) return
-    const sliderRect = slider.getBoundingClientRect()
-    const sliderCenter = sliderRect.left + sliderRect.width / 2
+  function goTo(index) {
+    if (index < 0) index = 0
+    if (index >= albums.length) index = albums.length - 1
+    setCurrentIndex(index)
+  }
 
-    let closestIndex = 0
-    let closestDistance = Infinity
+  // Mouse drag handlers
+  function onMouseDown(e) {
+    isDragging.current = true
+    startX.current = e.clientX
+    dragDelta.current = 0
+  }
 
-    cardRefs.current.forEach((card, i) => {
-      if (!card) return
-      const cardRect = card.getBoundingClientRect()
-      const cardCenter = cardRect.left + cardRect.width / 2
-      const distance = Math.abs(cardCenter - sliderCenter)
-      if (distance < closestDistance) {
-        closestDistance = distance
-        closestIndex = i
-      }
-    })
+  function onMouseMove(e) {
+    if (!isDragging.current) return
+    dragDelta.current = e.clientX - startX.current
+  }
 
-    setCenterIndex(closestIndex)
-  }, [])
+  function onMouseUp() {
+    if (!isDragging.current) return
+    isDragging.current = false
+    if (dragDelta.current < -60) goTo(currentIndex + 1)
+    else if (dragDelta.current > 60) goTo(currentIndex - 1)
+    dragDelta.current = 0
+  }
 
-  useEffect(() => {
-    const slider = sliderRef.current
-    if (!slider) return
-    slider.addEventListener('scroll', updateCenterIndex, { passive: true })
-    return () => slider.removeEventListener('scroll', updateCenterIndex)
-  }, [updateCenterIndex])
+  // Touch handlers
+  function onTouchStart(e) {
+    startX.current = e.touches[0].clientX
+    dragDelta.current = 0
+  }
 
-  // Run after albums load to set initial center
-  useEffect(() => {
-    if (albums.length > 0) {
-      setTimeout(() => {
-        // Scroll to center the first card
-        const slider = sliderRef.current
-        const firstCard = cardRefs.current[0]
-        if (slider && firstCard) {
-          const sliderCenter = slider.offsetWidth / 2
-          const cardCenter = firstCard.offsetLeft + firstCard.offsetWidth / 2
-          slider.scrollLeft = cardCenter - sliderCenter
-        }
-        updateCenterIndex()
-      }, 100)
-    }
-  }, [albums, updateCenterIndex])
+  function onTouchMove(e) {
+    dragDelta.current = e.touches[0].clientX - startX.current
+  }
 
-  // Get 3D transform based on distance from center
+  function onTouchEnd() {
+    if (dragDelta.current < -60) goTo(currentIndex + 1)
+    else if (dragDelta.current > 60) goTo(currentIndex - 1)
+    dragDelta.current = 0
+  }
+
+  // Calculate transform for each card in the fan
   function getCardStyle(index) {
-    const distance = index - centerIndex
-    const absDistance = Math.abs(distance)
-    const rotateY = distance * 20
-    const scale = absDistance === 0 ? 1 : absDistance === 1 ? 0.87 : 0.74
-    const translateZ = absDistance === 0 ? 0 : absDistance === 1 ? -50 : -100
-    const opacity = absDistance > 2 ? 0.35 : absDistance === 2 ? 0.55 : absDistance === 1 ? 0.82 : 1
-    const zIndex = 10 - absDistance
+    const total = albums.length
+    const relIndex = index - currentIndex
+
+    // Fan spread: each card rotates and translates away from center
+    const rotateZ = relIndex * 12        // tilt angle per step
+    const translateX = relIndex * 60     // horizontal spread
+    const translateY = Math.abs(relIndex) * 18  // cards behind sit lower
+    const scale = relIndex === 0 ? 1 : Math.max(0.72, 1 - Math.abs(relIndex) * 0.1)
+    const zIndex = total - Math.abs(relIndex)
+    const opacity = Math.abs(relIndex) > 3 ? 0 : Math.max(0.5, 1 - Math.abs(relIndex) * 0.15)
 
     return {
-      transform: `perspective(1200px) rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`,
-      opacity,
+      position: 'absolute',
+      transform: `translateX(${translateX}px) translateY(${translateY}px) rotateZ(${rotateZ}deg) scale(${scale})`,
+      transformOrigin: 'bottom center',
       zIndex,
-      transition: 'transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.45s ease',
+      opacity,
+      transition: 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease',
+      cursor: relIndex === 0 ? 'pointer' : 'default',
     }
   }
-
-  // Drag to scroll
-  const onMouseDown = (e) => {
-    setIsDragging(false)
-    startXRef.current = e.pageX - sliderRef.current.offsetLeft
-    scrollLeftRef.current = sliderRef.current.scrollLeft
-  }
-  const onMouseMove = (e) => {
-    if (!e.buttons) return
-    const x = e.pageX - sliderRef.current.offsetLeft
-    const walk = (x - startXRef.current) * 1.5
-    if (Math.abs(walk) > 5) setIsDragging(true)
-    sliderRef.current.scrollLeft = scrollLeftRef.current - walk
-  }
-  const onMouseUp = () => setTimeout(() => setIsDragging(false), 0)
 
   return (
     <section className={`relative py-24 transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
 
       {/* Header */}
-      <div className="text-center px-6 mb-12">
+      <div className="text-center px-6 mb-16">
         <h2 className="text-3xl md:text-4xl font-primary uppercase mb-4">
           Fresh Drops From The Studio
         </h2>
@@ -153,70 +135,125 @@ export default function MusicSection({ darkMode }) {
         </div>
       </div>
 
-      {/* Slider */}
+      {/* Carousel */}
       {loading && (
-        <div className="flex justify-center items-center h-64">
+        <div className="flex justify-center items-center h-96">
           <span className={`font-secondary text-sm ${darkMode ? 'text-white/40' : 'text-black/40'}`}>Loading releases...</span>
         </div>
       )}
 
       {error && (
-        <div className="flex justify-center items-center h-64">
+        <div className="flex justify-center items-center h-96">
           <span className={`font-secondary text-sm ${darkMode ? 'text-white/40' : 'text-black/40'}`}>{error}</span>
         </div>
       )}
 
       {!loading && !error && (
-        <div
-          ref={sliderRef}
-          className="flex gap-8 overflow-x-auto pb-8 cursor-grab active:cursor-grabbing select-none"
-          style={{
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-            paddingLeft: '50%',
-            paddingRight: '50%',
-          }}
-          onMouseDown={onMouseDown}
-          onMouseMove={onMouseMove}
-          onMouseUp={onMouseUp}
-          onMouseLeave={onMouseUp}
-        >
-          {albums.map((album, index) => (
-            <div
-              key={album.id}
-              ref={(el) => (cardRefs.current[index] = el)}
-              className="relative flex-shrink-0 w-56 md:w-64"
-              style={getCardStyle(index)}
-            >
-              {/* Album art */}
+        <div className="relative flex flex-col items-center">
+
+          {/* Fan container */}
+          <div
+            className="relative w-56 md:w-64 select-none"
+            style={{ height: '280px' }}
+            onMouseDown={onMouseDown}
+            onMouseMove={onMouseMove}
+            onMouseUp={onMouseUp}
+            onMouseLeave={onMouseUp}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
+            {albums.map((album, index) => (
               <div
-                className="relative rounded-2xl overflow-hidden aspect-square cursor-pointer shadow-2xl group"
-                onClick={() => { if (!isDragging) setModalAlbum(album) }}
+                key={album.id}
+                style={getCardStyle(index)}
+                className="w-56 md:w-64"
+                onClick={() => {
+                  if (index === currentIndex && dragDelta.current === 0) {
+                    setModalAlbum(album)
+                  } else if (index !== currentIndex) {
+                    goTo(index)
+                  }
+                }}
               >
-                <img
-                  src={album.images[0]?.url}
-                  alt={album.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  draggable={false}
-                />
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-xl">
-                    <svg className="w-6 h-6 text-black translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  </div>
+                <div className="relative rounded-2xl overflow-hidden aspect-square shadow-2xl group">
+                  <img
+                    src={album.images[0]?.url}
+                    alt={album.name}
+                    className="w-full h-full object-cover"
+                    draggable={false}
+                  />
+                  {/* Play overlay — only on active card */}
+                  {index === currentIndex && (
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-xl">
+                        <svg className="w-6 h-6 text-black translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
+            ))}
+          </div>
 
-              {/* Album info — only visible for center card */}
-              <div className={`mt-3 px-1 transition-opacity duration-300 ${index === centerIndex ? 'opacity-100' : 'opacity-0'}`}>
-                <p className="font-primary uppercase text-sm truncate">{album.name}</p>
-                <p className={`font-secondary text-xs mt-0.5 ${darkMode ? 'text-white/50' : 'text-black/50'}`}>
-                  {album.album_type.charAt(0).toUpperCase() + album.album_type.slice(1)} · {album.release_date.split('-')[0]}
+          {/* Album info */}
+          <div className="mt-6 text-center h-12">
+            {albums[currentIndex] && (
+              <>
+                <p className="font-primary uppercase text-sm">{albums[currentIndex].name}</p>
+                <p className={`font-secondary text-xs mt-1 ${darkMode ? 'text-white/50' : 'text-black/50'}`}>
+                  {albums[currentIndex].album_type.charAt(0).toUpperCase() + albums[currentIndex].album_type.slice(1)} · {albums[currentIndex].release_date.split('-')[0]}
                 </p>
-              </div>
-            </div>
-          ))}
+              </>
+            )}
+          </div>
+
+          {/* Navigation dots */}
+          <div className="flex gap-2 mt-4">
+            {albums.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                className={`rounded-full transition-all duration-300 ${
+                  i === currentIndex
+                    ? `w-4 h-2 ${darkMode ? 'bg-white' : 'bg-black'}`
+                    : `w-2 h-2 ${darkMode ? 'bg-white/30' : 'bg-black/20'}`
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* Arrow navigation */}
+          <div className="flex gap-4 mt-6">
+            <button
+              onClick={() => goTo(currentIndex - 1)}
+              disabled={currentIndex === 0}
+              className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
+                currentIndex === 0
+                  ? darkMode ? 'border-white/20 text-white/20' : 'border-black/20 text-black/20'
+                  : darkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black text-black hover:bg-black hover:text-white'
+              }`}
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/>
+              </svg>
+            </button>
+            <button
+              onClick={() => goTo(currentIndex + 1)}
+              disabled={currentIndex === albums.length - 1}
+              className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
+                currentIndex === albums.length - 1
+                  ? darkMode ? 'border-white/20 text-white/20' : 'border-black/20 text-black/20'
+                  : darkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black text-black hover:bg-black hover:text-white'
+              }`}
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
         </div>
       )}
 
