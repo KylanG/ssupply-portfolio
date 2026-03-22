@@ -129,7 +129,7 @@ export default function MusicSection({ darkMode }) {
         <h2 className="text-3xl md:text-4xl font-primary uppercase mb-4">
         Some Of My Latest Releases
         </h2>
-        <p className={`font-secondary text-base md:text-lg max-w-xl mx-auto mb-8 ${darkMode ? 'text-white/70' : 'text-black/60'}`}>
+        <p className={`font-secondary text-base md:text-lg max-w-xl mx-auto mb-8 ${darkMode ? 'text-white' : 'text-black'}`}>
           A selection of my most recent music productions. From atmospheric soundscapes
           to heavy-hitting beats — this is what's been coming out of the studio lately.
         </p>
@@ -216,8 +216,8 @@ export default function MusicSection({ darkMode }) {
             {albums[currentIndex] && (
               <>
                 <p className="font-primary uppercase text-sm">{albums[currentIndex].name}</p>
-                <p className={`font-secondary text-xs mt-1 ${darkMode ? 'text-white/50' : 'text-black/50'}`}>
-                  {albums[currentIndex].album_type.charAt(0).toUpperCase() + albums[currentIndex].album_type.slice(1)} · {albums[currentIndex].release_date.split('-')[0]}
+                <p className={`font-secondary text-xs mt-1 ${darkMode ? 'text-white' : 'text-black'}`}>
+                  {albums[currentIndex].artists.map(a => a.name).join(', ')}
                 </p>
               </>
             )}
