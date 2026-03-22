@@ -2,12 +2,11 @@ import { useEffect, useState, useRef } from 'react'
 
 const ARTIST_ID = '3TVXtAsR1Inumwj472S9r4' // Replace with your Spotify artist ID
 
-// Card dimensions
 const CARD_W = 220
-const FAN_SPREAD_X = 130   // horizontal distance per step
-const FAN_SPREAD_Y = 24    // vertical drop per step
-const FAN_ROTATE = 14      // rotation degrees per step
-const VISIBLE_SIDES = 2    // cards visible on each side
+const FAN_SPREAD_X = 130
+const FAN_SPREAD_Y = 24
+const FAN_ROTATE = 14
+const VISIBLE_SIDES = 2
 
 export default function MusicSection({ darkMode }) {
   const [albums, setAlbums] = useState([])
@@ -84,7 +83,6 @@ export default function MusicSection({ darkMode }) {
     dragDelta.current = 0
   }
 
-  // Shortest relative index for infinite loop
   function getRelIndex(index) {
     if (total === 0) return 0
     let rel = index - currentIndex
@@ -117,15 +115,14 @@ export default function MusicSection({ darkMode }) {
       opacity,
       pointerEvents,
       transition: 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease',
-      cursor: rel === 0 ? 'pointer' : 'pointer',
+      cursor: 'pointer',
     }
   }
 
-  // Container height: card height + max vertical drop
   const containerHeight = CARD_W + VISIBLE_SIDES * FAN_SPREAD_Y + 20
 
   return (
-    <section className={`relative py-24 transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
+    <section className={`relative py-24 overflow-x-hidden transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
 
       {/* Header */}
       <div className="text-center px-6 mb-16">
@@ -168,10 +165,10 @@ export default function MusicSection({ darkMode }) {
       {!loading && !error && (
         <div className="flex flex-col items-center">
 
-          {/* Fan wrapper — clips the cards that go off screen */}
+          {/* Fan wrapper */}
           <div
             className="relative w-full select-none"
-            style={{ height: `${containerHeight}px`, overflow: 'hidden' }}
+            style={{ height: `${containerHeight}px` }}
             onMouseDown={onMouseDown}
             onMouseMove={onMouseMove}
             onMouseUp={onMouseUp}
