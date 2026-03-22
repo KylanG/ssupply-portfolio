@@ -2,6 +2,13 @@ import { useEffect, useState, useRef } from 'react'
 
 const ARTIST_ID = '3TVXtAsR1Inumwj472S9r4' // Replace with your Spotify artist ID
 
+// Card dimensions
+const CARD_W = 220
+const FAN_SPREAD_X = 130   // horizontal distance per step
+const FAN_SPREAD_Y = 24    // vertical drop per step
+const FAN_ROTATE = 14      // rotation degrees per step
+const VISIBLE_SIDES = 2    // cards visible on each side
+
 export default function MusicSection({ darkMode }) {
   const [albums, setAlbums] = useState([])
   const [loading, setLoading] = useState(true)
@@ -42,13 +49,11 @@ export default function MusicSection({ darkMode }) {
 
   const total = albums.length
 
-  // Infinite loop: wrap index around
   function goTo(index) {
     if (total === 0) return
     setCurrentIndex(((index % total) + total) % total)
   }
 
-  // Mouse drag handlers
   function onMouseDown(e) {
     isDragging.current = true
     startX.current = e.clientX
@@ -66,7 +71,6 @@ export default function MusicSection({ darkMode }) {
     dragDelta.current = 0
   }
 
-  // Touch handlers
   function onTouchStart(e) {
     startX.current = e.touches[0].clientX
     dragDelta.current = 0
@@ -80,41 +84,48 @@ export default function MusicSection({ darkMode }) {
     dragDelta.current = 0
   }
 
-  // Calculate shortest relative index for infinite loop
+  // Shortest relative index for infinite loop
   function getRelIndex(index) {
     if (total === 0) return 0
     let rel = index - currentIndex
-    // Wrap to shortest path
     if (rel > total / 2) rel -= total
     if (rel < -total / 2) rel += total
     return rel
   }
 
-  // Calculate transform for each card in the fan
   function getCardStyle(index) {
-    const relIndex = getRelIndex(index)
-    const absRel = Math.abs(relIndex)
+    const rel = getRelIndex(index)
+    const absRel = Math.abs(rel)
 
-    const rotateZ = relIndex * 12
-    const translateX = relIndex * 60
-    const translateY = absRel * 18
-    const scale = relIndex === 0 ? 1 : Math.max(0.72, 1 - absRel * 0.1)
-    const zIndex = total - absRel
-    const opacity = absRel > 3 ? 0 : Math.max(0.5, 1 - absRel * 0.15)
+    const translateX = rel * FAN_SPREAD_X
+    const translateY = absRel * FAN_SPREAD_Y
+    const rotateZ = rel * FAN_ROTATE
+    const scale = absRel === 0 ? 1 : Math.max(0.7, 1 - absRel * 0.1)
+    const zIndex = 20 - absRel
+    const opacity = absRel > VISIBLE_SIDES ? 0 : absRel === VISIBLE_SIDES ? 0.6 : absRel === 1 ? 0.85 : 1
+    const pointerEvents = absRel > VISIBLE_SIDES ? 'none' : 'auto'
 
     return {
       position: 'absolute',
+      left: '50%',
+      top: 0,
+      marginLeft: `-${CARD_W / 2}px`,
+      width: `${CARD_W}px`,
       transform: `translateX(${translateX}px) translateY(${translateY}px) rotateZ(${rotateZ}deg) scale(${scale})`,
       transformOrigin: 'bottom center',
       zIndex,
       opacity,
+      pointerEvents,
       transition: 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease',
-      cursor: relIndex === 0 ? 'pointer' : 'default',
+      cursor: rel === 0 ? 'pointer' : 'pointer',
     }
   }
 
+  // Container height: card height + max vertical drop
+  const containerHeight = CARD_W + VISIBLE_SIDES * FAN_SPREAD_Y + 20
+
   return (
-    <section className={`relative py-24 overflow-hidden transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
+    <section className={`relative py-24 transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
 
       {/* Header */}
       <div className="text-center px-6 mb-16">
@@ -142,7 +153,6 @@ export default function MusicSection({ darkMode }) {
         </div>
       </div>
 
-      {/* Carousel */}
       {loading && (
         <div className="flex justify-center items-center h-96">
           <span className={`font-secondary text-sm ${darkMode ? 'text-white/40' : 'text-black/40'}`}>Loading releases...</span>
@@ -156,55 +166,52 @@ export default function MusicSection({ darkMode }) {
       )}
 
       {!loading && !error && (
-        <div className="relative flex flex-col items-center">
+        <div className="flex flex-col items-center">
 
-          {/* Fan container — overflow hidden to prevent mobile whitespace */}
-          <div className="w-full flex justify-center overflow-hidden">
-            <div
-              className="relative select-none flex-shrink-0"
-              style={{ width: '224px', height: '280px' }}
-              onMouseDown={onMouseDown}
-              onMouseMove={onMouseMove}
-              onMouseUp={onMouseUp}
-              onMouseLeave={onMouseUp}
-              onTouchStart={onTouchStart}
-              onTouchMove={onTouchMove}
-              onTouchEnd={onTouchEnd}
-            >
-              {albums.map((album, index) => (
-                <div
-                  key={album.id}
-                  style={getCardStyle(index)}
-                  className="w-48 md:w-56"
-                  onClick={() => {
-                    const relIndex = getRelIndex(index)
-                    if (relIndex === 0 && dragDelta.current === 0) {
-                      setModalAlbum(album)
-                    } else if (relIndex !== 0) {
-                      goTo(index)
-                    }
-                  }}
-                >
-                  <div className="relative rounded-2xl overflow-hidden aspect-square shadow-2xl group">
-                    <img
-                      src={album.images[0]?.url}
-                      alt={album.name}
-                      className="w-full h-full object-cover"
-                      draggable={false}
-                    />
-                    {getRelIndex(index) === 0 && (
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-xl">
-                          <svg className="w-6 h-6 text-black translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z"/>
-                          </svg>
-                        </div>
+          {/* Fan wrapper — clips the cards that go off screen */}
+          <div
+            className="relative w-full select-none"
+            style={{ height: `${containerHeight}px`, overflow: 'hidden' }}
+            onMouseDown={onMouseDown}
+            onMouseMove={onMouseMove}
+            onMouseUp={onMouseUp}
+            onMouseLeave={onMouseUp}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
+            {albums.map((album, index) => (
+              <div
+                key={album.id}
+                style={getCardStyle(index)}
+                onClick={() => {
+                  const rel = getRelIndex(index)
+                  if (rel === 0 && Math.abs(dragDelta.current) < 10) {
+                    setModalAlbum(album)
+                  } else {
+                    goTo(index)
+                  }
+                }}
+              >
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl group" style={{ aspectRatio: '1/1' }}>
+                  <img
+                    src={album.images[0]?.url}
+                    alt={album.name}
+                    className="w-full h-full object-cover"
+                    draggable={false}
+                  />
+                  {getRelIndex(index) === 0 && (
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-xl">
+                        <svg className="w-6 h-6 text-black translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
 
           {/* Album info */}
