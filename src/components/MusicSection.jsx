@@ -40,10 +40,12 @@ export default function MusicSection({ darkMode }) {
     return () => window.removeEventListener('keydown', handleKey)
   }, [])
 
+  const total = albums.length
+
+  // Infinite loop: wrap index around
   function goTo(index) {
-    if (index < 0) index = 0
-    if (index >= albums.length) index = albums.length - 1
-    setCurrentIndex(index)
+    if (total === 0) return
+    setCurrentIndex(((index % total) + total) % total)
   }
 
   // Mouse drag handlers
@@ -52,12 +54,10 @@ export default function MusicSection({ darkMode }) {
     startX.current = e.clientX
     dragDelta.current = 0
   }
-
   function onMouseMove(e) {
     if (!isDragging.current) return
     dragDelta.current = e.clientX - startX.current
   }
-
   function onMouseUp() {
     if (!isDragging.current) return
     isDragging.current = false
@@ -71,29 +71,36 @@ export default function MusicSection({ darkMode }) {
     startX.current = e.touches[0].clientX
     dragDelta.current = 0
   }
-
   function onTouchMove(e) {
     dragDelta.current = e.touches[0].clientX - startX.current
   }
-
   function onTouchEnd() {
     if (dragDelta.current < -60) goTo(currentIndex + 1)
     else if (dragDelta.current > 60) goTo(currentIndex - 1)
     dragDelta.current = 0
   }
 
+  // Calculate shortest relative index for infinite loop
+  function getRelIndex(index) {
+    if (total === 0) return 0
+    let rel = index - currentIndex
+    // Wrap to shortest path
+    if (rel > total / 2) rel -= total
+    if (rel < -total / 2) rel += total
+    return rel
+  }
+
   // Calculate transform for each card in the fan
   function getCardStyle(index) {
-    const total = albums.length
-    const relIndex = index - currentIndex
+    const relIndex = getRelIndex(index)
+    const absRel = Math.abs(relIndex)
 
-    // Fan spread: each card rotates and translates away from center
-    const rotateZ = relIndex * 12        // tilt angle per step
-    const translateX = relIndex * 60     // horizontal spread
-    const translateY = Math.abs(relIndex) * 18  // cards behind sit lower
-    const scale = relIndex === 0 ? 1 : Math.max(0.72, 1 - Math.abs(relIndex) * 0.1)
-    const zIndex = total - Math.abs(relIndex)
-    const opacity = Math.abs(relIndex) > 3 ? 0 : Math.max(0.5, 1 - Math.abs(relIndex) * 0.15)
+    const rotateZ = relIndex * 12
+    const translateX = relIndex * 60
+    const translateY = absRel * 18
+    const scale = relIndex === 0 ? 1 : Math.max(0.72, 1 - absRel * 0.1)
+    const zIndex = total - absRel
+    const opacity = absRel > 3 ? 0 : Math.max(0.5, 1 - absRel * 0.15)
 
     return {
       position: 'absolute',
@@ -107,7 +114,7 @@ export default function MusicSection({ darkMode }) {
   }
 
   return (
-    <section className={`relative py-24 transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
+    <section className={`relative py-24 overflow-hidden transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
 
       {/* Header */}
       <div className="text-center px-6 mb-16">
@@ -151,55 +158,57 @@ export default function MusicSection({ darkMode }) {
       {!loading && !error && (
         <div className="relative flex flex-col items-center">
 
-          {/* Fan container */}
-          <div
-            className="relative w-56 md:w-64 select-none"
-            style={{ height: '280px' }}
-            onMouseDown={onMouseDown}
-            onMouseMove={onMouseMove}
-            onMouseUp={onMouseUp}
-            onMouseLeave={onMouseUp}
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
-          >
-            {albums.map((album, index) => (
-              <div
-                key={album.id}
-                style={getCardStyle(index)}
-                className="w-56 md:w-64"
-                onClick={() => {
-                  if (index === currentIndex && dragDelta.current === 0) {
-                    setModalAlbum(album)
-                  } else if (index !== currentIndex) {
-                    goTo(index)
-                  }
-                }}
-              >
-                <div className="relative rounded-2xl overflow-hidden aspect-square shadow-2xl group">
-                  <img
-                    src={album.images[0]?.url}
-                    alt={album.name}
-                    className="w-full h-full object-cover"
-                    draggable={false}
-                  />
-                  {/* Play overlay — only on active card */}
-                  {index === currentIndex && (
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-xl">
-                        <svg className="w-6 h-6 text-black translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z"/>
-                        </svg>
+          {/* Fan container — overflow hidden to prevent mobile whitespace */}
+          <div className="w-full flex justify-center overflow-hidden">
+            <div
+              className="relative select-none flex-shrink-0"
+              style={{ width: '224px', height: '280px' }}
+              onMouseDown={onMouseDown}
+              onMouseMove={onMouseMove}
+              onMouseUp={onMouseUp}
+              onMouseLeave={onMouseUp}
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
+              {albums.map((album, index) => (
+                <div
+                  key={album.id}
+                  style={getCardStyle(index)}
+                  className="w-48 md:w-56"
+                  onClick={() => {
+                    const relIndex = getRelIndex(index)
+                    if (relIndex === 0 && dragDelta.current === 0) {
+                      setModalAlbum(album)
+                    } else if (relIndex !== 0) {
+                      goTo(index)
+                    }
+                  }}
+                >
+                  <div className="relative rounded-2xl overflow-hidden aspect-square shadow-2xl group">
+                    <img
+                      src={album.images[0]?.url}
+                      alt={album.name}
+                      className="w-full h-full object-cover"
+                      draggable={false}
+                    />
+                    {getRelIndex(index) === 0 && (
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-xl">
+                          <svg className="w-6 h-6 text-black translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                          </svg>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           {/* Album info */}
-          <div className="mt-6 text-center h-12">
+          <div className="mt-6 text-center h-12 px-6">
             {albums[currentIndex] && (
               <>
                 <p className="font-primary uppercase text-sm">{albums[currentIndex].name}</p>
@@ -229,12 +238,7 @@ export default function MusicSection({ darkMode }) {
           <div className="flex gap-4 mt-6">
             <button
               onClick={() => goTo(currentIndex - 1)}
-              disabled={currentIndex === 0}
-              className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
-                currentIndex === 0
-                  ? darkMode ? 'border-white/20 text-white/20' : 'border-black/20 text-black/20'
-                  : darkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black text-black hover:bg-black hover:text-white'
-              }`}
+              className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${darkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black text-black hover:bg-black hover:text-white'}`}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/>
@@ -242,12 +246,7 @@ export default function MusicSection({ darkMode }) {
             </button>
             <button
               onClick={() => goTo(currentIndex + 1)}
-              disabled={currentIndex === albums.length - 1}
-              className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
-                currentIndex === albums.length - 1
-                  ? darkMode ? 'border-white/20 text-white/20' : 'border-black/20 text-black/20'
-                  : darkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black text-black hover:bg-black hover:text-white'
-              }`}
+              className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${darkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black text-black hover:bg-black hover:text-white'}`}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
