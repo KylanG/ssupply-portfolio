@@ -127,7 +127,7 @@ export default function MusicSection({ darkMode }) {
       {/* Header */}
       <div className="text-center px-6 mb-16">
         <h2 className="text-3xl md:text-4xl font-primary uppercase mb-4">
-          Fresh Drops From The Studio
+        Some Of My Latest Releases
         </h2>
         <p className={`font-secondary text-base md:text-lg max-w-xl mx-auto mb-8 ${darkMode ? 'text-white/70' : 'text-black/60'}`}>
           A selection of my most recent music productions. From atmospheric soundscapes
