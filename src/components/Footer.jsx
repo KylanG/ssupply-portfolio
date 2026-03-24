@@ -30,7 +30,7 @@ export default function Footer({ darkMode }) {
           </div>
         </div>
 
-        <div className="flex justify-between items-center w-full text-sm">
+        <div className="flex flex-col md:flex-row justify-between items-center w-full text-sm gap-4 md:gap-0">
         <p>© {new Date().getFullYear()} SSUPPLY – All rights reserved</p>
 
           <div className="flex gap-6">

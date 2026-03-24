@@ -9,8 +9,17 @@ export default function Work({ darkMode, setDarkMode }) {
       <main className="relative z-10 flex-1">
         <Hero
           darkMode={darkMode}
-          title="Work"
-          subtitle="A selection of projects I've worked on."
+          title="Check out some of the work I've done."
+          subtitle="A collection of things I've built, designed, and shipped. More coming soon."
+          buttons={[
+            {
+              label: "Say hello",
+              emoji: "👋🏻",
+              href: "mailto:hello@seansupply.com",
+              filled: true,
+              external: false,
+            }
+          ]}
         />
       </main>
       <Footer darkMode={darkMode} />
