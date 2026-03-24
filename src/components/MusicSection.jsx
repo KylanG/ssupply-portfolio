@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
+import Button from './Button'
 
 const ARTIST_ID = '3TVXtAsR1Inumwj472S9r4' // Replace with your Spotify artist ID
 
@@ -135,18 +136,12 @@ export default function MusicSection({ darkMode }) {
         </p>
 
         <div className="flex justify-center gap-3 flex-wrap">
-          <a
-            href="/music#releases"
-            className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${darkMode ? 'border-white bg-white text-black' : 'border-black bg-black text-white'}`}
-          >
+          <Button href="/music" variant="primary" darkMode={darkMode}>
             <span>All releases</span>💿
-          </a>
-          <a
-            href="/music#about"
-            className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${darkMode ? 'border-white text-white' : 'border-black text-black'}`}
-          >
+          </Button>
+          <Button href="/music" variant="secondary" darkMode={darkMode}>
             <span>More about my music</span>→
-          </a>
+          </Button>
         </div>
       </div>
 
@@ -291,14 +286,9 @@ export default function MusicSection({ darkMode }) {
               <p className={`font-secondary text-xs mb-4 ${darkMode ? 'text-white/50' : 'text-black/50'}`}>
                 {modalAlbum.album_type.charAt(0).toUpperCase() + modalAlbum.album_type.slice(1)} · {modalAlbum.release_date.split('-')[0]}
               </p>
-              <a
-                href={modalAlbum.external_urls.spotify}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${darkMode ? 'border-white bg-white text-black' : 'border-black bg-black text-white'}`}
-              >
+              <Button href={modalAlbum.external_urls.spotify} variant="primary" darkMode={darkMode} newTab>
                 <span>Luister op Spotify</span>
-              </a>
+              </Button>
             </div>
           </div>
         </div>

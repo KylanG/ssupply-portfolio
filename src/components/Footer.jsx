@@ -1,3 +1,5 @@
+import Button from './Button'
+
 export default function Footer({ darkMode }) {
   const links = [
     { label: "Linkedin", href: "https://www.linkedin.com/in/kylan-sean-groen/" },
@@ -19,12 +21,12 @@ export default function Footer({ darkMode }) {
           </p>
 
           <div className="flex flex-row md:flex-row gap-3">
-            <a href="mailto:info@seansupply.com" className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${darkMode ? 'border-white bg-white text-black' : 'border-black bg-black text-white'}`}>
+            <Button href="mailto:info@seansupply.com" variant="primary" darkMode={darkMode}>
               <span>Say hello</span>👋🏻
-            </a>
-            <a href="/kylan-groen-cv.pdf" target="_blank" rel="noopener noreferrer" className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${darkMode ? 'border-white text-white' : 'border-black text-black'}`}>
+            </Button>
+            <Button href="/kylan-groen-cv.pdf" variant="secondary" darkMode={darkMode} newTab>
               <span>Download CV</span>🔗
-            </a>
+            </Button>
           </div>
         </div>
 

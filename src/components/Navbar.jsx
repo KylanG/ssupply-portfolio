@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Button from './Button'
 
 export default function Navbar({ darkMode, setDarkMode }) {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -47,12 +48,12 @@ export default function Navbar({ darkMode, setDarkMode }) {
           >
             <span className={`block w-5 h-5 rounded-full transition-transform duration-300 mx-0.5 ${darkMode ? 'bg-black translate-x-6' : 'bg-white translate-x-0'}`}></span>
           </button>
-          <a href="mailto:info@seansupply.com" className={`flex gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${darkMode ? 'border-white bg-white text-black' : 'border-black bg-black text-white'}`}>
+          <Button href="mailto:info@seansupply.com" variant="primary" darkMode={darkMode}>
             <span>Say hello</span>👋🏻
-          </a>
-          <a href="/kylan-groen-cv.pdf" target="_blank" rel="noopener noreferrer" className={`flex gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${darkMode ? 'border-white text-white' : 'border-black text-black'}`}>
+          </Button>
+          <Button href="/kylan-groen-cv.pdf" variant="secondary" darkMode={darkMode} newTab>
             <span>Download CV</span>🔗
-          </a>
+          </Button>
         </div>
 
         {/* Toggle + Hamburger — alleen op mobiel */}
@@ -86,12 +87,12 @@ export default function Navbar({ darkMode, setDarkMode }) {
               {item}
             </a>
           ))}
-          <a href="mailto:info@seansupply.com" className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none ${darkMode ? 'border-white bg-white text-black' : 'border-black bg-black text-white'}`}>
+          <Button href="mailto:info@seansupply.com" variant="primary" darkMode={darkMode}>
             <span>Say hello</span>👋🏻
-          </a>
-          <a href="/kylan-groen-cv.pdf" target="_blank" rel="noopener noreferrer" className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none ${darkMode ? 'border-white text-white' : 'border-black text-black'}`}>
+          </Button>
+          <Button href="/kylan-groen-cv.pdf" variant="secondary" darkMode={darkMode} newTab>
             <span>Download CV</span>🔗
-          </a>
+          </Button>
         </div>
       )}
     </nav>

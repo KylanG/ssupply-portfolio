@@ -1,3 +1,5 @@
+import Button from './Button'
+
 export default function Hero({ darkMode, title, subtitle, buttons }) {
   return (
     <section className="relative h-screen flex flex-col items-center justify-center text-center px-6">
@@ -18,24 +20,16 @@ export default function Hero({ darkMode, title, subtitle, buttons }) {
         {buttons && buttons.length > 0 && (
           <div className="flex flex-row gap-3">
             {buttons.map((button, index) => (
-              <a
+              <Button
                 key={index}
                 href={button.href}
-                target={button.external ? '_blank' : undefined}
-                rel={button.external ? 'noopener noreferrer' : undefined}
-                className={`flex justify-center gap-2 p-4 rounded-full border font-secondary leading-none transition-colors duration-300 ${
-                  button.filled
-                    ? darkMode
-                      ? 'border-white bg-white text-black'
-                      : 'border-black bg-black text-white'
-                    : darkMode
-                      ? 'border-white text-white'
-                      : 'border-black text-black'
-                }`}
+                variant={button.filled ? 'primary' : 'secondary'}
+                darkMode={darkMode}
+                newTab={button.external}
               >
                 <span>{button.label}</span>
                 {button.emoji && <span>{button.emoji}</span>}
-              </a>
+              </Button>
             ))}
           </div>
         )}
