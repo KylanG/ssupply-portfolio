@@ -22,9 +22,9 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />
-          <Route path="*" element={<NotFound darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/work" element={<Work darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/about" element={<About darkMode={darkMode} setDarkMode={setDarkMode} />} />
+          <Route path="*" element={<NotFound darkMode={darkMode} setDarkMode={setDarkMode} />} />
         </Routes>
       </BrowserRouter>
     </div>
