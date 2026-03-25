@@ -6,6 +6,9 @@ import '../index.css'
 export const metadata = {
   title: 'Kylan Groen | Portfolio',
   description: 'Front-end developer & web designer based in Rotterdam.',
+  icons: {
+    icon: '/favicon.png',
+  },
 }
 
 export default function RootLayout({ children }) {
