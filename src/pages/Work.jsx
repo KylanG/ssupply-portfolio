@@ -15,7 +15,7 @@ export default function Work({ darkMode, setDarkMode }) {
             {
               label: "Say hello",
               emoji: "👋🏻",
-              href: "mailto:hello@seansupply.com",
+              href: "mailto:info@seansupply.com",
               filled: true,
               external: false,
             }
