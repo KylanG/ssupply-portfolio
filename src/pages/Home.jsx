@@ -1,20 +1,22 @@
+'use client'
+import { useDarkMode } from '../context/DarkModeContext'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import MusicSection from '../components/MusicSection'
 import Footer from '../components/Footer'
-import OutlineText from '../assets/outline-text.svg'
 
-export default function Home({ darkMode, setDarkMode }) {
+export default function Home() {
+  const { darkMode } = useDarkMode()
+
   return (
     <div className="relative min-h-screen flex flex-col">
       <img
-        src={OutlineText}
+        src="/outline-text.svg"
         className={`absolute w-full bottom-0 select-none pointer-events-none z-0 transition-opacity duration-300 ${darkMode ? 'opacity-10' : 'opacity-50'}`}
       />
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Navbar />
       <main className="relative z-10 flex-1">
         <Hero
-          darkMode={darkMode}
           title="Hi! I'm Kylan, a front-end developer & web designer 👋🏻"
           subtitle="I'm a developer and web designer based in Rotterdam, passionate about creativity and bringing pixel-perfect designs to life."
           buttons={[
@@ -22,9 +24,9 @@ export default function Home({ darkMode, setDarkMode }) {
             { label: "Download CV", emoji: "🔗", href: "/kylan-groen-cv.pdf", external: true, filled: false },
           ]}
         />
-        <MusicSection darkMode={darkMode} />
+        <MusicSection />
       </main>
-      <Footer darkMode={darkMode} />
+      <Footer />
     </div>
   )
 }

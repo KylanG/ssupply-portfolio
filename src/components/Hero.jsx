@@ -1,6 +1,10 @@
+'use client'
+import { useDarkMode } from '../context/DarkModeContext'
 import Button from './Button'
 
-export default function Hero({ darkMode, title, subtitle, buttons }) {
+export default function Hero({ title, subtitle, buttons }) {
+  const { darkMode } = useDarkMode()
+
   return (
     <section className="relative h-screen flex flex-col items-center justify-center text-center px-6">
       <div className="relative z-10 flex flex-col items-center">
@@ -24,7 +28,6 @@ export default function Hero({ darkMode, title, subtitle, buttons }) {
                 key={index}
                 href={button.href}
                 variant={button.filled ? 'primary' : 'secondary'}
-                darkMode={darkMode}
                 newTab={button.external}
               >
                 <span>{button.label}</span>

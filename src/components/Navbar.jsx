@@ -1,7 +1,11 @@
+'use client'
 import { useState } from 'react'
+import Link from 'next/link'
+import { useDarkMode } from '../context/DarkModeContext'
 import Button from './Button'
 
-export default function Navbar({ darkMode, setDarkMode }) {
+export default function Navbar() {
+  const { darkMode, setDarkMode } = useDarkMode()
   const [menuOpen, setMenuOpen] = useState(false)
 
   const navLinks = ['Work', 'About', 'Music', 'Contact']
@@ -17,30 +21,30 @@ export default function Navbar({ darkMode, setDarkMode }) {
         {/* Left side: Logo + nav links */}
         <div className="flex items-center gap-6">
           <div className="px-3 py-1">
-            <a href="/">
+            <Link href="/">
               <img
                 src="/ssupply-logo.svg"
                 className={`transition-all duration-300 ${darkMode ? 'invert' : ''}`}
               />
-            </a>
+            </Link>
           </div>
 
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-6">
             {navLinks.map((item) => (
-              <a
+              <Link
                 key={item}
                 href={`/${item.toLowerCase()}`}
                 className={`nav-link font-secondary text-sm ${darkMode ? 'text-white' : 'text-black'}`}
               >
                 <span className="nav-text first">{item}</span>
                 <span className="nav-text second">{item}</span>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
 
-        {/* Buttons — alleen op desktop */}
+        {/* Buttons — desktop only */}
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={() => setDarkMode(!darkMode)}
@@ -48,15 +52,15 @@ export default function Navbar({ darkMode, setDarkMode }) {
           >
             <span className={`block w-5 h-5 rounded-full transition-transform duration-300 mx-0.5 ${darkMode ? 'bg-black translate-x-6' : 'bg-white translate-x-0'}`}></span>
           </button>
-          <Button href="mailto:info@seansupply.com" variant="primary" darkMode={darkMode}>
+          <Button href="mailto:info@seansupply.com" variant="primary">
             <span>Say hello</span>👋🏻
           </Button>
-          <Button href="/kylan-groen-cv.pdf" variant="secondary" darkMode={darkMode} newTab>
+          <Button href="/kylan-groen-cv.pdf" variant="secondary" newTab>
             <span>Download CV</span>🔗
           </Button>
         </div>
 
-        {/* Toggle + Hamburger — alleen op mobiel */}
+        {/* Toggle + Hamburger — mobile only */}
         <div className="flex md:hidden items-center gap-3 px-3">
           <button
             onClick={() => setDarkMode(!darkMode)}
@@ -75,22 +79,22 @@ export default function Navbar({ darkMode, setDarkMode }) {
         </div>
       </div>
 
-      {/* Mobiel menu */}
+      {/* Mobile menu */}
       {menuOpen && (
         <div className={`flex md:hidden flex-col gap-3 px-6 pb-6 border-t ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
           {navLinks.map((item) => (
-            <a
+            <Link
               key={item}
               href={`/${item.toLowerCase()}`}
               className={`font-secondary text-center py-2 text-1xl ${darkMode ? 'text-white' : 'text-black'}`}
             >
               {item}
-            </a>
+            </Link>
           ))}
-          <Button href="mailto:info@seansupply.com" variant="primary" darkMode={darkMode}>
+          <Button href="mailto:info@seansupply.com" variant="primary">
             <span>Say hello</span>👋🏻
           </Button>
-          <Button href="/kylan-groen-cv.pdf" variant="secondary" darkMode={darkMode} newTab>
+          <Button href="/kylan-groen-cv.pdf" variant="secondary" newTab>
             <span>Download CV</span>🔗
           </Button>
         </div>

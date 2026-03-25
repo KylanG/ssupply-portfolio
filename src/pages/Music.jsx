@@ -1,15 +1,15 @@
+'use client'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import MusicSection from '../components/MusicSection'
 import Footer from '../components/Footer'
 
-export default function Music({ darkMode, setDarkMode }) {
+export default function Music() {
   return (
     <div className="relative min-h-screen flex flex-col">
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Navbar />
       <main className="relative z-10 flex-1">
         <Hero
-          darkMode={darkMode}
           title="My Music"
           subtitle="A collection of my latest releases, productions, and sounds coming out of the studio."
           buttons={[
@@ -17,9 +17,9 @@ export default function Music({ darkMode, setDarkMode }) {
             { label: "Follow on Soundcloud", emoji: "🔗", href: "https://soundcloud.com/ssupply", external: true, filled: false },
           ]}
         />
-        <MusicSection darkMode={darkMode} showButtons={false} />
+        <MusicSection showButtons={false} />
       </main>
-      <Footer darkMode={darkMode} />
+      <Footer />
     </div>
   )
 }

@@ -1,4 +1,6 @@
+'use client'
 import { useEffect, useState, useRef } from 'react'
+import { useDarkMode } from '../context/DarkModeContext'
 import Button from './Button'
 
 const ARTIST_ID = '3TVXtAsR1Inumwj472S9r4' // Replace with your Spotify artist ID
@@ -9,7 +11,8 @@ const FAN_SPREAD_Y = 24
 const FAN_ROTATE = 14
 const VISIBLE_SIDES = 2
 
-export default function MusicSection({ darkMode, showButtons = true }) {
+export default function MusicSection({ showButtons = true }) {
+  const { darkMode } = useDarkMode()
   const [albums, setAlbums] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
