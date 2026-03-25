@@ -36,7 +36,7 @@ export default function Home() {
           },
           {
             question: "Are you available for freelance work?",
-            answer: "Yes! I'm open to freelance projects. Feel free to reach out at info@seansupply.com and we can talk about what you have in mind."
+            answer: "No! I'm currently not open to freelance projects. However feel free to reach out at info@seansupply.com and we can talk about what you have in mind."
           },
           {
             question: "What tools and technologies do you use?",
