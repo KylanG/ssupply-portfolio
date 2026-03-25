@@ -4,7 +4,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import '../index.css'
 
 export const metadata = {
-  title: 'Kylan Groen | Portfolio',
+  title: 'SSUPPLY | Front-end developer portfolio',
   description: 'Front-end developer & web designer based in Rotterdam.',
   icons: {
     icon: '/favicon.png',
