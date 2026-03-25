@@ -35,7 +35,7 @@ export default function MusicSection({ showButtons = true }) {
         )
         const data = await res.json()
         setAlbums(data.items || [])
-      } catch (err) {
+      } catch {
         setError('Could not load releases.')
       } finally {
         setLoading(false)
