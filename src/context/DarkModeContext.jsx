@@ -4,12 +4,10 @@ import { createContext, useContext, useState, useEffect } from 'react'
 const DarkModeContext = createContext({ darkMode: false, setDarkMode: () => {} })
 
 export function DarkModeProvider({ children }) {
-  const [darkMode, setDarkMode] = useState(false)
-
-  useEffect(() => {
-    const stored = localStorage.getItem('darkMode')
-    if (stored !== null) setDarkMode(stored === 'true')
-  }, [])
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window === 'undefined') return false
+    return localStorage.getItem('darkMode') === 'true'
+  })
 
   useEffect(() => {
     localStorage.setItem('darkMode', darkMode)
