@@ -287,7 +287,7 @@ export default function MusicSection({ darkMode }) {
                 {modalAlbum.album_type.charAt(0).toUpperCase() + modalAlbum.album_type.slice(1)} · {modalAlbum.release_date.split('-')[0]}
               </p>
               <Button href={modalAlbum.external_urls.spotify} variant="primary" darkMode={darkMode} newTab>
-                <span>Luister op Spotify</span>
+                <span>Listen on Spotify</span>
               </Button>
             </div>
           </div>
