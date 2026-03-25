@@ -9,7 +9,7 @@ const FAN_SPREAD_Y = 24
 const FAN_ROTATE = 14
 const VISIBLE_SIDES = 2
 
-export default function MusicSection({ darkMode }) {
+export default function MusicSection({ darkMode, showButtons = true }) {
   const [albums, setAlbums] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -135,14 +135,16 @@ export default function MusicSection({ darkMode }) {
           to heavy-hitting beats — this is what's been coming out of the studio lately.
         </p>
 
-        <div className="flex justify-center gap-3 flex-wrap">
-          <Button href="/music" variant="primary" darkMode={darkMode}>
-            <span>All releases</span>💿
-          </Button>
-          <Button href="/music" variant="secondary" darkMode={darkMode}>
-            <span>More about my music</span>→
-          </Button>
-        </div>
+        {showButtons && (
+          <div className="flex justify-center gap-3 flex-wrap">
+            <Button href="/music" variant="primary" darkMode={darkMode}>
+              <span>All releases</span>💿
+            </Button>
+            <Button href="/music" variant="secondary" darkMode={darkMode}>
+              <span>More about my music</span>→
+            </Button>
+          </div>
+        )}
       </div>
 
       {loading && (
