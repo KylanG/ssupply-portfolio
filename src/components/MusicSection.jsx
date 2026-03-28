@@ -224,17 +224,20 @@ export default function MusicSection({ showButtons = true }) {
           </div>
 
           {/* Navigation dots */}
-          <div className="flex gap-2 mt-4">
-            {albums.map((_, i) => (
+          <div className="flex gap-1 mt-4">
+            {albums.map((album, i) => (
               <button
                 key={i}
                 onClick={() => goTo(i)}
-                className={`rounded-full transition-all duration-300 ${
+                aria-label={`Go to ${album.name}`}
+                className="p-2 flex items-center justify-center"
+              >
+                <span className={`rounded-full transition-all duration-300 ${
                   i === currentIndex
                     ? `w-4 h-2 ${darkMode ? 'bg-white' : 'bg-black'}`
                     : `w-2 h-2 ${darkMode ? 'bg-white/30' : 'bg-black/20'}`
-                }`}
-              />
+                }`} />
+              </button>
             ))}
           </div>
 
@@ -242,17 +245,19 @@ export default function MusicSection({ showButtons = true }) {
           <div className="flex gap-4 mt-6">
             <button
               onClick={() => goTo(currentIndex - 1)}
+              aria-label="Previous release"
               className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${darkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black text-black hover:bg-black hover:text-white'}`}
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/>
               </svg>
             </button>
             <button
               onClick={() => goTo(currentIndex + 1)}
+              aria-label="Next release"
               className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${darkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black text-black hover:bg-black hover:text-white'}`}
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
               </svg>
             </button>
@@ -279,9 +284,10 @@ export default function MusicSection({ showButtons = true }) {
               />
               <button
                 onClick={() => setModalAlbum(null)}
+                aria-label="Close"
                 className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-colors"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
               </button>

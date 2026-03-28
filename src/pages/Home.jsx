@@ -13,6 +13,8 @@ export default function Home() {
     <div className="relative min-h-screen flex flex-col">
       <img
         src="/outline-text.svg"
+        alt=""
+        aria-hidden="true"
         className={`absolute w-full bottom-0 select-none pointer-events-none z-0 transition-opacity duration-300 ${darkMode ? 'opacity-10' : 'opacity-50'}`}
       />
       <Navbar />
