@@ -8,7 +8,12 @@ export default function Navbar() {
   const { darkMode, setDarkMode } = useDarkMode()
   const [menuOpen, setMenuOpen] = useState(false)
 
-  const navLinks = ['Work', 'About', 'Music', 'Contact']
+  const navLinks = [
+    { label: 'Work', href: '/work' },
+    { label: 'About', href: '/about' },
+    { label: 'Music', href: '/music' },
+    { label: 'Contact', href: 'mailto:info@seansupply.com' },
+  ]
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 backdrop-blur-md border-b ${
@@ -33,14 +38,14 @@ export default function Navbar() {
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-6">
             {navLinks.map((item) => (
-              <Link
-                key={item}
-                href={`/${item.toLowerCase()}`}
+              <a
+                key={item.label}
+                href={item.href}
                 className={`nav-link font-secondary text-sm ${darkMode ? 'text-white' : 'text-black'}`}
               >
-                <span className="nav-text first">{item}</span>
-                <span className="nav-text second" aria-hidden="true">{item}</span>
-              </Link>
+                <span className="nav-text first">{item.label}</span>
+                <span className="nav-text second" aria-hidden="true">{item.label}</span>
+              </a>
             ))}
           </div>
         </div>
@@ -88,13 +93,13 @@ export default function Navbar() {
       {menuOpen && (
         <div className={`flex md:hidden flex-col gap-3 px-6 pb-6 border-t ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
           {navLinks.map((item) => (
-            <Link
-              key={item}
-              href={`/${item.toLowerCase()}`}
+            <a
+              key={item.label}
+              href={item.href}
               className={`font-secondary text-center py-2 text-1xl ${darkMode ? 'text-white' : 'text-black'}`}
             >
-              {item}
-            </Link>
+              {item.label}
+            </a>
           ))}
           <Button href="mailto:info@seansupply.com" variant="primary">
             <span>Say hello</span>👋🏻
