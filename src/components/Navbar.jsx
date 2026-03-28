@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useDarkMode } from '../context/DarkModeContext'
 import Button from './Button'
 
@@ -27,10 +28,13 @@ export default function Navbar() {
         <div className="flex items-center gap-6">
           <div className="px-3 py-1">
             <Link href="/" aria-label="Go to homepage">
-              <img
+              <Image
                 src="/ssupply-logo.svg"
                 alt="SSUPPLY logo"
+                width={139}
+                height={41}
                 className={`transition-all duration-300 ${darkMode ? 'invert' : ''}`}
+                priority
               />
             </Link>
           </div>

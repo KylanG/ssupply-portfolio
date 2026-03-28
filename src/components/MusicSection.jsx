@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState, useRef } from 'react'
+import Image from 'next/image'
 import { useDarkMode } from '../context/DarkModeContext'
 import Button from './Button'
 
@@ -191,11 +192,13 @@ export default function MusicSection({ showButtons = true }) {
                 }}
               >
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl group" style={{ aspectRatio: '1/1' }}>
-                  <img
+                  <Image
                     src={album.images[0]?.url}
                     alt={album.name}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                     draggable={false}
+                    sizes="220px"
                   />
                   {getRelIndex(index) === 0 && (
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -277,11 +280,15 @@ export default function MusicSection({ showButtons = true }) {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative">
-              <img
-                src={modalAlbum.images[0]?.url}
-                alt={modalAlbum.name}
-                className="w-full aspect-square object-cover"
-              />
+              <div className="relative w-full aspect-square">
+                <Image
+                  src={modalAlbum.images[0]?.url}
+                  alt={modalAlbum.name}
+                  fill
+                  className="object-cover"
+                  sizes="384px"
+                />
+              </div>
               <button
                 onClick={() => setModalAlbum(null)}
                 aria-label="Close"
