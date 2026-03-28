@@ -15,9 +15,9 @@ export default function Footer() {
     <footer className={`relative z-10 flex flex-col md:flex-row justify-between items-center px-8 py-6 font-secondary gap-4 transition-colors duration-300 ${darkMode ? "text-white" : "text-black"}`}>
       <div className="flex-col w-full justify-center justify-items-center">
         <div className="flex-col justify-items-center py-24 w-full">
-          <h1 className="text-3xl md:text-4xl text-center font-primary uppercase mb-4">
+          <h2 className="text-3xl md:text-4xl text-center font-primary uppercase mb-4">
             Let's build something awesome,<br />or just share a friendly wave! 👋🏻
-          </h1>
+          </h2>
 
           <p className={`text-base md:text-lg font-secondary text-center max-w-xl mb-8 ${darkMode ? 'text-white' : 'text-black'}`}>
             Feel free to reach out at{" "}
