@@ -32,9 +32,9 @@ export async function generateMetadata({ params }) {
     },
     twitter: { card: 'summary_large_image' },
     alternates: {
-      canonical: `https://www.seansupply.com/${locale}`,
+      canonical: isNl ? 'https://www.seansupply.com/nl' : 'https://www.seansupply.com',
       languages: {
-        en: 'https://www.seansupply.com/en',
+        en: 'https://www.seansupply.com',
         nl: 'https://www.seansupply.com/nl',
       },
     },

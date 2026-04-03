@@ -15,10 +15,12 @@ export default function Navbar() {
   const tDark = useTranslations('darkMode')
   const locale = useLocale()
 
+  const prefix = locale === 'en' ? '' : `/${locale}`
+
   const navLinks = [
-    { label: t('work'), href: `/${locale}/work` },
-    { label: t('about'), href: `/${locale}/about` },
-    { label: t('music'), href: `/${locale}/music` },
+    { label: t('work'), href: `${prefix}/work` },
+    { label: t('about'), href: `${prefix}/about` },
+    { label: t('music'), href: `${prefix}/music` },
     { label: t('contact'), href: 'mailto:info@seansupply.com' },
   ]
 
@@ -67,7 +69,7 @@ export default function Navbar() {
         {/* Left: Logo */}
         <div className="flex items-center">
           <div className="px-3 py-1">
-            <Link href={`/${locale}`} aria-label={t('homepage')}>
+            <Link href={prefix || '/'} aria-label={t('homepage')}>
               <Image
                 src="/ssupply-logo.svg"
                 alt="SSUPPLY logo"
@@ -124,7 +126,7 @@ export default function Navbar() {
 
         {/* Left: Logo */}
         <div className="px-3 py-1">
-          <Link href={`/${locale}`} aria-label={t('homepage')}>
+          <Link href={prefix || '/'} aria-label={t('homepage')}>
             <Image
               src="/ssupply-logo.svg"
               alt="SSUPPLY logo"

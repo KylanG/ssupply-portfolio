@@ -22,7 +22,7 @@ export default function NotFound() {
       <main className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-6">
         <h1 className="font-primary uppercase text-5xl mb-4">{t('title')}</h1>
         <p className="font-secondary text-lg mb-8">{t('subtitle')}</p>
-        <Button href={`/${locale}`} variant="primary">
+        <Button href={locale === 'en' ? '/' : `/${locale}`} variant="primary">
           <span>{t('backHome')}</span><span aria-hidden="true">👋🏻</span>
         </Button>
       </main>

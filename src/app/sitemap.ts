@@ -13,7 +13,7 @@ const routes = [
 export default function sitemap(): MetadataRoute.Sitemap {
   return locales.flatMap((locale) =>
     routes.map(({ path, changeFrequency, priority }) => ({
-      url: `${BASE_URL}/${locale}${path}`,
+      url: locale === 'en' ? `${BASE_URL}${path || '/'}` : `${BASE_URL}/${locale}${path}`,
       lastModified: new Date(),
       changeFrequency,
       priority,
