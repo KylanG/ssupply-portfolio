@@ -1,4 +1,4 @@
-import NotFound from '../pages/NotFound'
+import NotFound from '../../views/NotFound'
 
 export const metadata = {
   title: 'Page not found',

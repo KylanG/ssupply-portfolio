@@ -1,10 +1,11 @@
 'use client'
 import { useEffect, useState, useRef } from 'react'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useDarkMode } from '../context/DarkModeContext'
 import Button from './Button'
 
-const ARTIST_ID = '3TVXtAsR1Inumwj472S9r4' // Replace with your Spotify artist ID
+const ARTIST_ID = '3TVXtAsR1Inumwj472S9r4'
 
 const CARD_W = 220
 const FAN_SPREAD_X = 130
@@ -14,6 +15,7 @@ const VISIBLE_SIDES = 2
 
 export default function MusicSection({ showButtons = true }) {
   const { darkMode } = useDarkMode()
+  const t = useTranslations('musicSection')
   const [albums, setAlbums] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -37,13 +39,13 @@ export default function MusicSection({ showButtons = true }) {
         const data = await res.json()
         setAlbums(data.items || [])
       } catch {
-        setError('Could not load releases.')
+        setError(t('error'))
       } finally {
         setLoading(false)
       }
     }
     fetchReleases()
-  }, [])
+  }, [t])
 
   useEffect(() => {
     const handleKey = (e) => { if (e.key === 'Escape') setModalAlbum(null) }
@@ -132,20 +134,19 @@ export default function MusicSection({ showButtons = true }) {
       {/* Header */}
       <div className="text-center px-6 mb-16">
         <h2 className="text-3xl md:text-4xl font-primary uppercase mb-4">
-        Some Of My Latest Releases
+          {t('sectionTitle')}
         </h2>
         <p className={`font-secondary text-base md:text-lg max-w-xl mx-auto mb-8 ${darkMode ? 'text-white' : 'text-black'}`}>
-          A selection of my most recent music productions. From atmospheric soundscapes
-          to heavy-hitting beats — this is what's been coming out of the studio lately.
+          {t('sectionSubtitle')}
         </p>
 
         {showButtons && (
           <div className="flex justify-center gap-3 flex-wrap">
-            <Button href="/music" variant="primary" darkMode={darkMode}>
-              <span>All releases</span>💿
+            <Button href="/music" variant="primary">
+              <span>{t('allReleases')}</span><span aria-hidden="true">💿</span>
             </Button>
-            <Button href="/music" variant="secondary" darkMode={darkMode}>
-              <span>More about my music</span>→
+            <Button href="/music" variant="secondary">
+              <span>{t('moreAboutMusic')}</span><span aria-hidden="true">→</span>
             </Button>
           </div>
         )}
@@ -153,7 +154,7 @@ export default function MusicSection({ showButtons = true }) {
 
       {loading && (
         <div className="flex justify-center items-center h-96">
-          <span className={`font-secondary text-sm ${darkMode ? 'text-white/40' : 'text-black/40'}`}>Loading releases...</span>
+          <span className={`font-secondary text-sm ${darkMode ? 'text-white/40' : 'text-black/40'}`}>{t('loading')}</span>
         </div>
       )}
 
@@ -232,7 +233,7 @@ export default function MusicSection({ showButtons = true }) {
               <button
                 key={i}
                 onClick={() => goTo(i)}
-                aria-label={`Go to ${album.name}`}
+                aria-label={t('goTo', { name: album.name })}
                 className="p-2 flex items-center justify-center"
               >
                 <span className={`rounded-full transition-all duration-300 ${
@@ -248,7 +249,7 @@ export default function MusicSection({ showButtons = true }) {
           <div className="flex gap-4 mt-6">
             <button
               onClick={() => goTo(currentIndex - 1)}
-              aria-label="Previous release"
+              aria-label={t('previousRelease')}
               className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${darkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black text-black hover:bg-black hover:text-white'}`}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
@@ -257,7 +258,7 @@ export default function MusicSection({ showButtons = true }) {
             </button>
             <button
               onClick={() => goTo(currentIndex + 1)}
-              aria-label="Next release"
+              aria-label={t('nextRelease')}
               className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${darkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black text-black hover:bg-black hover:text-white'}`}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
@@ -291,7 +292,7 @@ export default function MusicSection({ showButtons = true }) {
               </div>
               <button
                 onClick={() => setModalAlbum(null)}
-                aria-label="Close"
+                aria-label={t('close')}
                 className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-colors"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
@@ -304,8 +305,8 @@ export default function MusicSection({ showButtons = true }) {
               <p className={`font-secondary text-xs mb-4 ${darkMode ? 'text-white/50' : 'text-black/50'}`}>
                 {modalAlbum.album_type.charAt(0).toUpperCase() + modalAlbum.album_type.slice(1)} · {modalAlbum.release_date.split('-')[0]}
               </p>
-              <Button href={modalAlbum.external_urls.spotify} variant="primary" darkMode={darkMode} newTab>
-                <span>Listen on Spotify</span>
+              <Button href={modalAlbum.external_urls.spotify} variant="primary" newTab>
+                <span>{t('listenOnSpotify')}</span>
               </Button>
             </div>
           </div>

@@ -1,0 +1,86 @@
+{
+  "nav": {
+    "work": "Work",
+    "about": "Over mij",
+    "music": "Muziek",
+    "contact": "Contact",
+    "sayHello": "Zeg hallo",
+    "openMenu": "Menu openen",
+    "closeMenu": "Menu sluiten",
+    "homepage": "Naar de homepage"
+  },
+  "home": {
+    "title": "Hoi! Ik ben Kylan, een front-end developer & web designer",
+    "subtitle": "Ik ben een developer en web designer gevestigd in Rotterdam, gepassioneerd door creativiteit en het tot leven brengen van pixel-perfecte designs.",
+    "sayHello": "Zeg hallo",
+    "downloadCv": "CV downloaden",
+    "faqTitle": "Veelgestelde vragen",
+    "faqSubtitle": "Nog vragen? 🤯\nHier zijn de meest gestelde vragen",
+    "faq": [
+      {
+        "question": "Wat voor projecten neem je aan?",
+        "answer": "Ik werk aan front-end projecten variërend van portfoliosites en landingspagina's tot complexere webapplicaties. Ik richt me op clean design, vloeiende interacties en pixel-perfecte implementatie."
+      },
+      {
+        "question": "Ben je beschikbaar voor freelance werk?",
+        "answer": "Nee! Ik sta momenteel niet open voor freelance projecten. Neem gerust contact op via info@seansupply.com en we kunnen praten over wat je in gedachten hebt."
+      },
+      {
+        "question": "Welke tools en technologieën gebruik je?",
+        "answer": "Ik werk voornamelijk met React, Next.js en Tailwind CSS aan de front-end. Voor design gebruik ik Figma, en ik deploy de meeste projecten op Vercel."
+      },
+      {
+        "question": "Doe je ook design, of alleen development?",
+        "answer": "Beide! Ik geniet van het volledige proces van design tot development. Ik kan een project begeleiden van een ruw idee tot een live, gepolijste website."
+      }
+    ]
+  },
+  "about": {
+    "title": "Over mij",
+    "subtitle": "Front-end developer en web designer gevestigd in Rotterdam, gepassioneerd door creativiteit en pixel-perfect design."
+  },
+  "work": {
+    "title": "Bekijk een deel van mijn werk.",
+    "subtitle": "Een collectie van dingen die ik gebouwd, ontworpen en opgeleverd heb. Meer volgt binnenkort.",
+    "sayHello": "Zeg hallo"
+  },
+  "music": {
+    "title": "Mijn Muziek",
+    "subtitle": "Een collectie van mijn laatste releases, producties en geluiden uit de studio.",
+    "listenOnSpotify": "Luisteren op Spotify",
+    "followOnSoundcloud": "Volgen op Soundcloud"
+  },
+  "musicSection": {
+    "sectionTitle": "Mijn Laatste Releases",
+    "sectionSubtitle": "Een selectie van mijn meest recente muziekproducties. Van atmosferische soundscapes tot zware beats — dit is wat er de laatste tijd uit de studio komt.",
+    "allReleases": "Alle releases",
+    "moreAboutMusic": "Meer over mijn muziek",
+    "loading": "Releases laden...",
+    "error": "Releases konden niet geladen worden.",
+    "previousRelease": "Vorige release",
+    "nextRelease": "Volgende release",
+    "listenOnSpotify": "Luisteren op Spotify",
+    "close": "Sluiten",
+    "goTo": "Ga naar {name}"
+  },
+  "footer": {
+    "cta": "Laten we iets geweldigs bouwen, of gewoon een vriendelijke groet uitwisselen!",
+    "email": "Neem gerust contact op via",
+    "sayHello": "Zeg hallo",
+    "downloadCv": "CV downloaden",
+    "copyright": "© {year} SSUPPLY – Alle rechten voorbehouden"
+  },
+  "notFound": {
+    "title": "Pagina niet gevonden",
+    "subtitle": "De pagina die je zoekt bestaat niet of is verplaatst.",
+    "backHome": "Terug naar home"
+  },
+  "darkMode": {
+    "switchToLight": "Schakel naar lichte modus",
+    "switchToDark": "Schakel naar donkere modus"
+  },
+  "language": {
+    "switchTo": "Switch to English",
+    "current": "NL"
+  }
+}

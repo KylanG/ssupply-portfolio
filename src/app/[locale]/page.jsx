@@ -1,5 +1,5 @@
-import Home from '../pages/Home'
-import JsonLd from '../components/JsonLd'
+import Home from '../../views/Home'
+import JsonLd from '../../components/JsonLd'
 
 const websiteSchema = {
   '@context': 'https://schema.org',

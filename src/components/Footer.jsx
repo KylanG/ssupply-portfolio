@@ -1,9 +1,11 @@
 'use client'
+import { useTranslations } from 'next-intl'
 import { useDarkMode } from '../context/DarkModeContext'
 import Button from './Button'
 
 export default function Footer() {
   const { darkMode } = useDarkMode()
+  const t = useTranslations('footer')
 
   const links = [
     { label: "Linkedin", href: "https://www.linkedin.com/in/kylan-sean-groen/" },
@@ -16,26 +18,26 @@ export default function Footer() {
       <div className="flex flex-col w-full justify-center items-center">
         <div className="flex flex-col items-center py-24 w-full">
           <h2 className="text-3xl md:text-4xl text-center font-primary uppercase mb-4">
-            Let's build something awesome,<br />or just share a friendly wave! <span aria-hidden="true">👋🏻</span>
+            {t('cta')} <span aria-hidden="true">👋🏻</span>
           </h2>
 
           <p className={`text-base md:text-lg font-secondary text-center max-w-xl mb-8 ${darkMode ? 'text-white' : 'text-black'}`}>
-            Feel free to reach out at{" "}
+            {t('email')}{" "}
             <a href="mailto:info@seansupply.com" className="underline">info@seansupply.com</a>
           </p>
 
           <div className="flex flex-row gap-3">
             <Button href="mailto:info@seansupply.com" variant="primary">
-              <span>Say hello</span><span aria-hidden="true">👋🏻</span>
+              <span>{t('sayHello')}</span><span aria-hidden="true">👋🏻</span>
             </Button>
             <Button href="/kylan-groen-cv.pdf" variant="secondary" newTab>
-              <span>Download CV</span><span aria-hidden="true">🔗</span>
+              <span>{t('downloadCv')}</span><span aria-hidden="true">🔗</span>
             </Button>
           </div>
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center w-full text-sm gap-4 md:gap-0">
-          <p>© {new Date().getFullYear()} SSUPPLY – All rights reserved</p>
+          <p>{t('copyright', { year: new Date().getFullYear() })}</p>
 
           <div className="flex gap-6">
             {links.map(({ label, href }) => (

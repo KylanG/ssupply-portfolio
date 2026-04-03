@@ -1,0 +1,86 @@
+{
+  "nav": {
+    "work": "Work",
+    "about": "About",
+    "music": "Music",
+    "contact": "Contact",
+    "sayHello": "Say hello",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "homepage": "Go to homepage"
+  },
+  "home": {
+    "title": "Hi! I'm Kylan, a front-end developer & web designer",
+    "subtitle": "I'm a developer and web designer based in Rotterdam, passionate about creativity and bringing pixel-perfect designs to life.",
+    "sayHello": "Say hello",
+    "downloadCv": "Download CV",
+    "faqTitle": "Frequently Asked Questions",
+    "faqSubtitle": "Holy FAQ! 🤯 Still have questions?\nHere are some frequently asked questions",
+    "faq": [
+      {
+        "question": "What kind of projects do you take on?",
+        "answer": "I work on front-end projects ranging from portfolio sites and landing pages to more complex web applications. I focus on clean design, smooth interactions, and pixel-perfect implementation."
+      },
+      {
+        "question": "Are you available for freelance work?",
+        "answer": "No! I'm currently not open to freelance projects. However feel free to reach out at info@seansupply.com and we can talk about what you have in mind."
+      },
+      {
+        "question": "What tools and technologies do you use?",
+        "answer": "I primarily work with React, Next.js, and Tailwind CSS on the front-end. For design I use Figma, and I deploy most projects on Vercel."
+      },
+      {
+        "question": "Do you also do design, or just development?",
+        "answer": "Both! I enjoy the full process from design to development. I can take a project from a rough idea all the way to a live, polished website."
+      }
+    ]
+  },
+  "about": {
+    "title": "About me",
+    "subtitle": "Front-end developer and web designer based in Rotterdam, passionate about creativity and pixel-perfect design."
+  },
+  "work": {
+    "title": "Check out some of the work I've done.",
+    "subtitle": "A collection of things I've built, designed, and shipped. More coming soon.",
+    "sayHello": "Say hello"
+  },
+  "music": {
+    "title": "My Music",
+    "subtitle": "A collection of my latest releases, productions, and sounds coming out of the studio.",
+    "listenOnSpotify": "Listen on Spotify",
+    "followOnSoundcloud": "Follow on Soundcloud"
+  },
+  "musicSection": {
+    "sectionTitle": "Some Of My Latest Releases",
+    "sectionSubtitle": "A selection of my most recent music productions. From atmospheric soundscapes to heavy-hitting beats — this is what's been coming out of the studio lately.",
+    "allReleases": "All releases",
+    "moreAboutMusic": "More about my music",
+    "loading": "Loading releases...",
+    "error": "Could not load releases.",
+    "previousRelease": "Previous release",
+    "nextRelease": "Next release",
+    "listenOnSpotify": "Listen on Spotify",
+    "close": "Close",
+    "goTo": "Go to {name}"
+  },
+  "footer": {
+    "cta": "Let's build something awesome, or just share a friendly wave!",
+    "email": "Feel free to reach out at",
+    "sayHello": "Say hello",
+    "downloadCv": "Download CV",
+    "copyright": "© {year} SSUPPLY – All rights reserved"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "subtitle": "The page you are looking for doesn't exist or has been moved.",
+    "backHome": "Back to home"
+  },
+  "darkMode": {
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode"
+  },
+  "language": {
+    "switchTo": "Switch to Dutch",
+    "current": "EN"
+  }
+}
