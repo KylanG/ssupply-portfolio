@@ -2,21 +2,23 @@
 import Link from 'next/link'
 import { useDarkMode } from '../context/DarkModeContext'
 
-export default function Button({ variant = 'primary', href, children, newTab = false, className = '', darkMode: _darkMode, ...props }) {
+const base = 'flex justify-center items-center gap-2 px-6 py-4 rounded-full border font-secondary leading-none transition-colors duration-300'
+
+function getVariantClasses(variant, darkMode) {
+  if (variant === 'secondary') {
+    return darkMode
+      ? 'bg-transparent text-white border-white hover:bg-white hover:text-black'
+      : 'bg-transparent text-black border-black hover:bg-black hover:text-white'
+  }
+  return darkMode
+    ? 'bg-white text-black border-white hover:bg-transparent hover:text-white'
+    : 'bg-black text-white border-black hover:bg-transparent hover:text-black'
+}
+
+export default function Button({ variant = 'primary', href, children, newTab = false, className = '', ...props }) {
   const { darkMode } = useDarkMode()
 
-  const base = 'flex justify-center items-center gap-2 px-6 py-4 rounded-full border font-secondary leading-none transition-colors duration-300'
-
-  const variants = {
-    primary: darkMode
-      ? 'bg-white text-black border-white hover:bg-transparent hover:text-white'
-      : 'bg-black text-white border-black hover:bg-transparent hover:text-black',
-    secondary: darkMode
-      ? 'bg-transparent text-white border-white hover:bg-white hover:text-black'
-      : 'bg-transparent text-black border-black hover:bg-black hover:text-white',
-  }
-
-  const classes = `${base} ${variants[variant]} ${className}`
+  const classes = `${base} ${getVariantClasses(variant, darkMode)} ${className}`
 
   const isExternal = href && (href.startsWith('http') || href.startsWith('mailto') || href.startsWith('//'))
 

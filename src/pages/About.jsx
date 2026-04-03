@@ -10,7 +10,7 @@ export default function About() {
       <main className="relative z-10 flex-1">
         <Hero
           title="About me"
-          subtitle="A selection of projects I've worked on."
+          subtitle="Front-end developer and web designer based in Rotterdam, passionate about creativity and pixel-perfect design."
         />
       </main>
       <Footer />

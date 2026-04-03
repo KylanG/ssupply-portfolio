@@ -23,15 +23,15 @@ export default function Hero({ title, subtitle, buttons }) {
 
         {buttons && buttons.length > 0 && (
           <div className="flex flex-row gap-3">
-            {buttons.map((button, index) => (
+            {buttons.map((button) => (
               <Button
-                key={index}
+                key={button.href}
                 href={button.href}
                 variant={button.filled ? 'primary' : 'secondary'}
                 newTab={button.external}
               >
                 <span>{button.label}</span>
-                {button.emoji && <span>{button.emoji}</span>}
+                {button.emoji && <span aria-hidden="true">{button.emoji}</span>}
               </Button>
             ))}
           </div>

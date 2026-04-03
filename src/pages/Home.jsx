@@ -20,7 +20,7 @@ export default function Home() {
       <Navbar />
       <main className="relative z-10 flex-1">
         <Hero
-          title="Hi! I'm Kylan, a front-end developer & web designer 👋🏻"
+          title={<>Hi! I'm Kylan, a front-end developer & web designer <span aria-hidden="true">👋🏻</span></>}
           subtitle="I'm a developer and web designer based in Rotterdam, passionate about creativity and bringing pixel-perfect designs to life."
           buttons={[
             { label: "Say hello", emoji: "👋🏻", href: "mailto:info@seansupply.com", filled: true },

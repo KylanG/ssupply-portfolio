@@ -13,10 +13,10 @@ export default function Footer() {
 
   return (
     <footer className={`relative z-10 flex flex-col md:flex-row justify-between items-center px-8 py-6 font-secondary gap-4 transition-colors duration-300 ${darkMode ? "text-white" : "text-black"}`}>
-      <div className="flex-col w-full justify-center justify-items-center">
-        <div className="flex-col justify-items-center py-24 w-full">
+      <div className="flex flex-col w-full justify-center items-center">
+        <div className="flex flex-col items-center py-24 w-full">
           <h2 className="text-3xl md:text-4xl text-center font-primary uppercase mb-4">
-            Let's build something awesome,<br />or just share a friendly wave! 👋🏻
+            Let's build something awesome,<br />or just share a friendly wave! <span aria-hidden="true">👋🏻</span>
           </h2>
 
           <p className={`text-base md:text-lg font-secondary text-center max-w-xl mb-8 ${darkMode ? 'text-white' : 'text-black'}`}>
@@ -24,12 +24,12 @@ export default function Footer() {
             <a href="mailto:info@seansupply.com" className="underline">info@seansupply.com</a>
           </p>
 
-          <div className="flex flex-row md:flex-row gap-3">
+          <div className="flex flex-row gap-3">
             <Button href="mailto:info@seansupply.com" variant="primary">
-              <span>Say hello</span>👋🏻
+              <span>Say hello</span><span aria-hidden="true">👋🏻</span>
             </Button>
             <Button href="/kylan-groen-cv.pdf" variant="secondary" newTab>
-              <span>Download CV</span>🔗
+              <span>Download CV</span><span aria-hidden="true">🔗</span>
             </Button>
           </div>
         </div>
@@ -43,11 +43,11 @@ export default function Footer() {
                 key={label}
                 href={href}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="nav-link"
               >
                 <span className="nav-text first">{label}</span>
-                <span className="nav-text second">{label}</span>
+                <span className="nav-text second" aria-hidden="true">{label}</span>
               </a>
             ))}
           </div>
