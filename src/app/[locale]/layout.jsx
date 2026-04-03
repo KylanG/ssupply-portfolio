@@ -31,12 +31,6 @@ export async function generateMetadata({ params }) {
       siteName: 'SSUPPLY',
     },
     twitter: { card: 'summary_large_image' },
-    alternates: {
-      languages: {
-        en: 'https://www.seansupply.com',
-        nl: 'https://www.seansupply.com/nl',
-      },
-    },
   }
 }
 

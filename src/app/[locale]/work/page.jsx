@@ -8,6 +8,12 @@ export async function generateMetadata({ params }) {
     description: locale === 'nl'
       ? 'Een collectie van projecten gebouwd, ontworpen en opgeleverd door Kylan — front-end development en web design vanuit Rotterdam.'
       : 'A collection of projects built, designed, and shipped by Kylan — front-end development and web design from Rotterdam.',
+    alternates: {
+      languages: {
+        en: 'https://www.seansupply.com/work',
+        nl: 'https://www.seansupply.com/nl/work',
+      },
+    },
   }
 }
 

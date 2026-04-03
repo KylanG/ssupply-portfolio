@@ -1,6 +1,17 @@
 import Home from '../../views/Home'
 import JsonLd from '../../components/JsonLd'
 
+export async function generateMetadata() {
+  return {
+    alternates: {
+      languages: {
+        en: 'https://www.seansupply.com',
+        nl: 'https://www.seansupply.com/nl',
+      },
+    },
+  }
+}
+
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',

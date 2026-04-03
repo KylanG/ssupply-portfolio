@@ -8,6 +8,12 @@ export async function generateMetadata({ params }) {
     description: locale === 'nl'
       ? 'Luister naar de laatste releases en producties van SSUPPLY — beschikbaar op Spotify en SoundCloud.'
       : 'Listen to the latest releases and productions by SSUPPLY — available on Spotify and SoundCloud.',
+    alternates: {
+      languages: {
+        en: 'https://www.seansupply.com/music',
+        nl: 'https://www.seansupply.com/nl/music',
+      },
+    },
   }
 }
 

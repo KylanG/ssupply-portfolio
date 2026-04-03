@@ -8,6 +8,12 @@ export async function generateMetadata({ params }) {
     description: locale === 'nl'
       ? 'Leer Kylan kennen — een front-end developer en web designer gevestigd in Rotterdam met een passie voor pixel-perfect design.'
       : 'Get to know Kylan — a front-end developer and web designer based in Rotterdam with a passion for pixel-perfect design.',
+    alternates: {
+      languages: {
+        en: 'https://www.seansupply.com/about',
+        nl: 'https://www.seansupply.com/nl/about',
+      },
+    },
   }
 }
 
