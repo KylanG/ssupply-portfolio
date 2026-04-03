@@ -10,7 +10,8 @@
     "homepage": "Go to homepage"
   },
   "home": {
-    "title": "Hi! I'm Kylan, a front-end developer & web designer",
+    "titleLine1": "Hi! I'm Kylan,",
+    "titleLine2": "a front-end developer & web designer",
     "subtitle": "I'm a developer and web designer based in Rotterdam, passionate about creativity and bringing pixel-perfect designs to life.",
     "sayHello": "Say hello",
     "downloadCv": "Download CV",
@@ -64,7 +65,8 @@
     "goTo": "Go to {name}"
   },
   "footer": {
-    "cta": "Let's build something awesome, or just share a friendly wave!",
+    "ctaLine1": "Let's build something awesome,",
+    "ctaLine2": "or just share a friendly wave!",
     "email": "Feel free to reach out at",
     "sayHello": "Say hello",
     "downloadCv": "Download CV",

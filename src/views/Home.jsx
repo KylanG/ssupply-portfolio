@@ -24,7 +24,7 @@ export default function Home() {
       <Navbar />
       <main className="relative z-10 flex-1">
         <Hero
-          title={<>{t('title')} <span aria-hidden="true">👋🏻</span></>}
+          title={<>{t('titleLine1')}<br />{t('titleLine2')} <span aria-hidden="true">👋🏻</span></>}
           subtitle={t('subtitle')}
           buttons={[
             { label: t('sayHello'), emoji: '👋🏻', href: 'mailto:info@seansupply.com', filled: true },

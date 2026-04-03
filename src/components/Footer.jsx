@@ -18,7 +18,7 @@ export default function Footer() {
       <div className="flex flex-col w-full justify-center items-center">
         <div className="flex flex-col items-center py-24 w-full">
           <h2 className="text-3xl md:text-4xl text-center font-primary uppercase mb-4">
-            {t('cta')} <span aria-hidden="true">👋🏻</span>
+            {t('ctaLine1')}<br />{t('ctaLine2')} <span aria-hidden="true">👋🏻</span>
           </h2>
 
           <p className={`text-base md:text-lg font-secondary text-center max-w-xl mb-8 ${darkMode ? 'text-white' : 'text-black'}`}>
