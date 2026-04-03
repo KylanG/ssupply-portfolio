@@ -50,10 +50,6 @@ export default async function LocaleLayout({ children, params }) {
 
   return (
     <html lang={locale}>
-      <head>
-        <link rel="preload" href="/fonts/ApfelGrotezk-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/6849a000350c88ee79310a0c_Bueno-Bold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-      </head>
       <body>
         <NextIntlClientProvider messages={messages}>
           <ClientProviders>
