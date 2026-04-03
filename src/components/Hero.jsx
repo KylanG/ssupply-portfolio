@@ -10,7 +10,7 @@ export default function Hero({ title, subtitle, buttons }) {
       <div className="relative z-10 flex flex-col items-center">
 
         {title && (
-          <h1 className="text-4xl md:text-5xl font-primary uppercase mb-4 max-w-[85%] md:max-w-[60%]">
+          <h1 className="text-4xl md:text-5xl font-primary uppercase mb-4">
             {title}
           </h1>
         )}
