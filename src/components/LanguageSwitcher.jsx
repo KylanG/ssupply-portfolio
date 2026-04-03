@@ -37,12 +37,12 @@ export default function LanguageSwitcher() {
   function switchLocale(nextLocale) {
     if (nextLocale === locale) { setOpen(false); return }
 
-    // Strip current locale prefix (if any) to get the bare path
-    const barePath = locale === 'en'
-      ? pathname
-      : pathname.replace(`/${locale}`, '') || '/'
+    // usePathname() returns the internal path (always with locale prefix)
+    const barePath = pathname.startsWith(`/${locale}`)
+      ? pathname.slice(`/${locale}`.length) || '/'
+      : pathname
 
-    // Add next locale prefix (EN has no prefix with as-needed)
+    // EN has no prefix with as-needed, NL gets /nl prefix
     const newPath = nextLocale === 'en'
       ? barePath
       : `/${nextLocale}${barePath === '/' ? '' : barePath}`
