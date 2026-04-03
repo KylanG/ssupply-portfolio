@@ -4,8 +4,8 @@ import { useLocale, useTranslations } from 'next-intl'
 import { usePathname, useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 import { useDarkMode } from '../context/DarkModeContext'
-import { routing } from '../i18n/routing'
 
+const LOCALES = ['en', 'nl']
 const LOCALE_LABELS = { en: 'EN', nl: 'NL' }
 
 export default function LanguageSwitcher() {
@@ -55,7 +55,7 @@ export default function LanguageSwitcher() {
         aria-expanded={open}
         aria-haspopup="listbox"
         disabled={isPending}
-        className={`w-9 h-9 rounded-full border font-secondary text-xs flex items-center justify-center transition-colors duration-200 ${borderClass} ${isPending ? 'opacity-40 cursor-not-allowed' : ''}`}
+        className={`w-11 h-11 rounded-full border font-secondary text-xs flex items-center justify-center transition-colors duration-200 ${borderClass} ${isPending ? 'opacity-40 cursor-not-allowed' : ''}`}
       >
         {LOCALE_LABELS[locale]}
       </button>
@@ -66,7 +66,7 @@ export default function LanguageSwitcher() {
           aria-label="Select language"
           className={`absolute right-0 mt-2 w-20 rounded-xl border shadow-lg overflow-hidden z-50 ${dropdownBg}`}
         >
-          {routing.locales.map((loc) => (
+          {LOCALES.map((loc) => (
             <li key={loc} role="option" aria-selected={loc === locale}>
               <button
                 onClick={() => switchLocale(loc)}

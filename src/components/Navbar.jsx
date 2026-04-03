@@ -38,7 +38,7 @@ export default function Navbar() {
     <button
       onClick={() => setDarkMode(!darkMode)}
       aria-label={darkMode ? tDark('switchToLight') : tDark('switchToDark')}
-      className={`relative w-9 h-9 rounded-full border flex items-center justify-center transition-colors duration-200 ${iconBorderClass}`}
+      className={`relative w-11 h-11 rounded-full border flex items-center justify-center transition-colors duration-200 ${iconBorderClass}`}
     >
       <Sun
         size={15}
@@ -111,7 +111,7 @@ export default function Navbar() {
 
         {/* Right: Say hello + language switcher + dark mode toggle */}
         <div className="flex items-center justify-end gap-2">
-          <Button href="mailto:info@seansupply.com" variant="primary">
+          <Button href="mailto:info@seansupply.com" variant="primary" className="h-11 px-4 py-0">
             <span>{t('sayHello')}</span><span aria-hidden="true">👋🏻</span>
           </Button>
           <LanguageSwitcher />
@@ -147,9 +147,9 @@ export default function Navbar() {
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
           >
-            <span className={`block w-5 h-0.5 transition-all ${darkMode ? 'bg-white' : 'bg-black'} ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-            <span className={`block w-5 h-0.5 transition-all ${darkMode ? 'bg-white' : 'bg-black'} ${menuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`block w-5 h-0.5 transition-all ${darkMode ? 'bg-white' : 'bg-black'} ${menuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+            <span className={`block w-5 h-0.5 transition-all duration-300 ${darkMode ? 'bg-white' : 'bg-black'} ${menuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+            <span className={`block w-5 h-0.5 transition-all duration-300 ${darkMode ? 'bg-white' : 'bg-black'} ${menuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`block w-5 h-0.5 transition-all duration-300 ${darkMode ? 'bg-white' : 'bg-black'} ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
           </button>
         </div>
       </div>
