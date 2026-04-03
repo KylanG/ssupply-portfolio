@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Sun, Moon } from 'lucide-react'
 import { useDarkMode } from '../context/DarkModeContext'
 import Button from './Button'
 import LanguageSwitcher from './LanguageSwitcher'
@@ -29,13 +30,28 @@ export default function Navbar() {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [])
 
+  const iconBorderClass = darkMode
+    ? 'border-white/30 text-white hover:bg-white/10'
+    : 'border-black/20 text-black hover:bg-black/5'
+
   const darkModeToggle = (
     <button
       onClick={() => setDarkMode(!darkMode)}
       aria-label={darkMode ? tDark('switchToLight') : tDark('switchToDark')}
-      className={`w-12 h-6 rounded-full transition-colors duration-300 ${darkMode ? 'bg-white' : 'bg-black'}`}
+      className={`relative w-9 h-9 rounded-full border flex items-center justify-center transition-colors duration-200 ${iconBorderClass}`}
     >
-      <span className={`block w-5 h-5 rounded-full transition-transform duration-300 mx-0.5 ${darkMode ? 'bg-black translate-x-6' : 'bg-white translate-x-0'}`}></span>
+      <Sun
+        size={15}
+        className={`absolute transition-all duration-300 ${
+          darkMode ? 'opacity-0 scale-50' : 'opacity-100 scale-100'
+        }`}
+      />
+      <Moon
+        size={15}
+        className={`absolute transition-all duration-300 ${
+          darkMode ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
+        }`}
+      />
     </button>
   )
 
@@ -94,7 +110,7 @@ export default function Navbar() {
         </div>
 
         {/* Right: Say hello + language switcher + dark mode toggle */}
-        <div className="flex items-center justify-end gap-3">
+        <div className="flex items-center justify-end gap-2">
           <Button href="mailto:info@seansupply.com" variant="primary">
             <span>{t('sayHello')}</span><span aria-hidden="true">👋🏻</span>
           </Button>
@@ -120,19 +136,20 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Right: Dark mode toggle + hamburger */}
-        <div className="flex items-center gap-3 px-3">
+        {/* Right: [☾/☀] [Taal] [☰] */}
+        <div className="flex items-center gap-2 px-3">
           {darkModeToggle}
+          <LanguageSwitcher />
           <button
-            className="flex flex-col gap-1.5"
+            className="flex flex-col gap-1.5 w-9 h-9 items-center justify-center"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? t('closeMenu') : t('openMenu')}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
           >
-            <span className={`block w-6 h-0.5 transition-all ${darkMode ? 'bg-white' : 'bg-black'} ${menuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-            <span className={`block w-6 h-0.5 transition-all ${darkMode ? 'bg-white' : 'bg-black'} ${menuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`block w-6 h-0.5 transition-all ${darkMode ? 'bg-white' : 'bg-black'} ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+            <span className={`block w-5 h-0.5 transition-all ${darkMode ? 'bg-white' : 'bg-black'} ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+            <span className={`block w-5 h-0.5 transition-all ${darkMode ? 'bg-white' : 'bg-black'} ${menuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`block w-5 h-0.5 transition-all ${darkMode ? 'bg-white' : 'bg-black'} ${menuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
           </button>
         </div>
       </div>
@@ -147,7 +164,7 @@ export default function Navbar() {
                 <a
                   key={item.label}
                   href={item.href}
-                  className={`font-secondary text-center py-2 text-1xl ${darkMode ? 'text-white' : 'text-black'}`}
+                  className={`font-secondary text-center py-2 text-xl ${darkMode ? 'text-white' : 'text-black'}`}
                 >
                   {item.label}
                 </a>
@@ -157,16 +174,13 @@ export default function Navbar() {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`font-secondary text-center py-2 text-1xl ${darkMode ? 'text-white' : 'text-black'}`}
+                className={`font-secondary text-center py-2 text-xl ${darkMode ? 'text-white' : 'text-black'}`}
                 onClick={() => setMenuOpen(false)}
               >
                 {item.label}
               </Link>
             )
           })}
-          <div className="flex justify-center">
-            <LanguageSwitcher />
-          </div>
           <Button href="mailto:info@seansupply.com" variant="primary">
             <span>{t('sayHello')}</span><span aria-hidden="true">👋🏻</span>
           </Button>
