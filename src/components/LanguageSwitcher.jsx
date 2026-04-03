@@ -36,7 +36,17 @@ export default function LanguageSwitcher() {
 
   function switchLocale(nextLocale) {
     if (nextLocale === locale) { setOpen(false); return }
-    const newPath = pathname.replace(`/${locale}`, `/${nextLocale}`)
+
+    // Strip current locale prefix (if any) to get the bare path
+    const barePath = locale === 'en'
+      ? pathname
+      : pathname.replace(`/${locale}`, '') || '/'
+
+    // Add next locale prefix (EN has no prefix with as-needed)
+    const newPath = nextLocale === 'en'
+      ? barePath
+      : `/${nextLocale}${barePath === '/' ? '' : barePath}`
+
     setOpen(false)
     startTransition(() => router.push(newPath))
   }
