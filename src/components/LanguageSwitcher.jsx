@@ -36,9 +36,9 @@ export default function LanguageSwitcher() {
   function switchLocale(nextLocale) {
     if (nextLocale === locale) { setOpen(false); return }
 
-    // next/navigation usePathname() returns the real browser URL path
-    // EN has no prefix: /work, /about etc.
-    // NL has /nl prefix: /nl/work, /nl/about etc.
+    // Set NEXT_LOCALE cookie so middleware respects explicit choice over Accept-Language
+    document.cookie = `NEXT_LOCALE=${nextLocale}; path=/; max-age=31536000`
+
     const barePath = locale === 'nl'
       ? (pathname.replace('/nl', '') || '/')
       : pathname
