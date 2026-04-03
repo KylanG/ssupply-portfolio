@@ -1,8 +1,7 @@
 'use client'
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState, useTransition } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import { usePathname, useRouter } from 'next/navigation'
-import { useTransition } from 'react'
 import { useDarkMode } from '../context/DarkModeContext'
 
 const LOCALES = ['en', 'nl']
@@ -37,15 +36,16 @@ export default function LanguageSwitcher() {
   function switchLocale(nextLocale) {
     if (nextLocale === locale) { setOpen(false); return }
 
-    // usePathname() returns the internal path (always with locale prefix)
-    const barePath = pathname.startsWith(`/${locale}`)
-      ? pathname.slice(`/${locale}`.length) || '/'
+    // next/navigation usePathname() returns the real browser URL path
+    // EN has no prefix: /work, /about etc.
+    // NL has /nl prefix: /nl/work, /nl/about etc.
+    const barePath = locale === 'nl'
+      ? (pathname.replace('/nl', '') || '/')
       : pathname
 
-    // EN has no prefix with as-needed, NL gets /nl prefix
     const newPath = nextLocale === 'en'
       ? barePath
-      : `/${nextLocale}${barePath === '/' ? '' : barePath}`
+      : `/nl${barePath === '/' ? '' : barePath}`
 
     setOpen(false)
     startTransition(() => router.push(newPath))
