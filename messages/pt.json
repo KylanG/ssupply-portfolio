@@ -2,85 +2,85 @@
   "nav": {
     "work": "Trabalho",
     "about": "Sobre mim",
-    "music": "Música",
+    "music": "Musica",
     "contact": "Contato",
-    "sayHello": "Diz olá",
+    "sayHello": "Diz ola",
     "openMenu": "Abrir menu",
     "closeMenu": "Fechar menu",
-    "homepage": "Ir para a página inicial"
+    "homepage": "Ir para a pagina inicial"
   },
   "home": {
     "titleLine1": "Oi! Sou Kylan, um desenvolvedor",
     "titleLine2": "front-end & web designer",
-    "subtitle": "Sou um desenvolvedor e web designer baseado em Roterdã, apaixonado por criatividade e por dar vida a designs pixel-perfeitos.",
-    "sayHello": "Diz olá",
+    "subtitle": "Sou um desenvolvedor e web designer baseado em Rotterdam, apaixonado por criatividade e por dar vida a designs pixel-perfeitos.",
+    "sayHello": "Diz ola",
     "downloadCv": "Baixar CV",
     "faqTitle": "Perguntas Frequentes",
-    "faqSubtitle": "Ainda tem dúvidas? 🤯\nAqui estão as perguntas mais frequentes",
+    "faqSubtitle": "Ainda tem duvidas? 🤯\nAqui estao as perguntas mais frequentes",
     "faq": [
       {
-        "question": "Que tipo de projetos você aceita?",
-        "answer": "Trabalho em projetos front-end que vão desde portfólios e landing pages até aplicações web mais complexas. Foco em design limpo, interações fluidas e implementação pixel-perfeita."
+        "question": "Que tipo de projetos voce aceita?",
+        "answer": "Trabalho em projetos front-end que vao desde portfolios e landing pages ate aplicacoes web mais complexas. Foco em design limpo, interacoes fluidas e implementacao pixel-perfeita."
       },
       {
-        "question": "Você está disponível para trabalho freelance?",
-        "answer": "Não! No momento não estou aberto a projetos freelance. Mas fique à vontade para entrar em contato pelo info@seansupply.com e podemos conversar sobre o que você tem em mente."
+        "question": "Voce esta disponivel para trabalho freelance?",
+        "answer": "Nao! No momento nao estou aberto a projetos freelance. Mas fique a vontade para entrar em contato pelo info@seansupply.com e podemos conversar sobre o que voce tem em mente."
       },
       {
-        "question": "Quais ferramentas e tecnologias você usa?",
-        "answer": "Trabalho principalmente com React, Next.js e Tailwind CSS no front-end. Para design uso Figma e faço deploy da maioria dos projetos na Vercel."
+        "question": "Quais ferramentas e tecnologias voce usa?",
+        "answer": "Trabalho principalmente com React, Next.js e Tailwind CSS no front-end. Para design uso Figma e faco deploy da maioria dos projetos na Vercel."
       },
       {
-        "question": "Você também faz design, ou só desenvolvimento?",
-        "answer": "Os dois! Gosto de todo o processo, do design ao desenvolvimento. Posso levar um projeto de uma ideia bruta até um site ao vivo e bem acabado."
+        "question": "Voce tambem faz design, ou so desenvolvimento?",
+        "answer": "Os dois! Gosto de todo o processo, do design ao desenvolvimento. Posso levar um projeto de uma ideia bruta ate um site ao vivo e bem acabado."
       }
     ]
   },
   "about": {
     "title": "Sobre mim",
-    "subtitle": "Desenvolvedor front-end e web designer baseado em Roterdã, apaixonado por criatividade e design pixel-perfeito."
+    "subtitle": "Desenvolvedor front-end e web designer baseado em Rotterdam, apaixonado por criatividade e design pixel-perfeito."
   },
   "work": {
     "title": "Veja um pouco do meu trabalho.",
-    "subtitle": "Uma coleção de coisas que construí, desenhei e entreguei. Mais em breve.",
-    "sayHello": "Diz olá"
+    "subtitle": "Uma colecao de coisas que construi, desenhei e entreguei. Mais em breve.",
+    "sayHello": "Diz ola"
   },
   "music": {
-    "title": "Minha Música",
-    "subtitle": "Uma coleção dos meus lançamentos, produções e sons mais recentes saídos do estúdio.",
+    "title": "Minha Musica",
+    "subtitle": "Uma colecao dos meus lancamentos, producoes e sons mais recentes saidos do estudio.",
     "listenOnSpotify": "Ouvir no Spotify",
     "followOnSoundcloud": "Seguir no Soundcloud"
   },
   "musicSection": {
-    "sectionTitle": "Meus Últimos Lançamentos",
-    "sectionSubtitle": "Uma seleção das minhas produções musicais mais recentes. De paisagens sonoras atmosféricas a batidas pesadas — é isso que tem saído do estúdio ultimamente.",
-    "allReleases": "Todos os lançamentos",
-    "moreAboutMusic": "Mais sobre minha música",
-    "loading": "Carregando lançamentos...",
-    "error": "Não foi possível carregar os lançamentos.",
-    "previousRelease": "Lançamento anterior",
-    "nextRelease": "Próximo lançamento",
+    "sectionTitle": "Meus Ultimos Lancamentos",
+    "sectionSubtitle": "Uma selecao das minhas producoes musicais mais recentes. De paisagens sonoras atmosfericas a batidas pesadas — e isso que tem saido do estudio ultimamente.",
+    "allReleases": "Todos os lancamentos",
+    "moreAboutMusic": "Mais sobre minha musica",
+    "loading": "Carregando lancamentos...",
+    "error": "Nao foi possivel carregar os lancamentos.",
+    "previousRelease": "Lancamento anterior",
+    "nextRelease": "Proximo lancamento",
     "listenOnSpotify": "Ouvir no Spotify",
     "close": "Fechar",
     "goTo": "Ir para {name}"
   },
   "contact": {
     "title": "Entre em contato",
-    "subtitle": "Tem um projeto em mente ou quer só dizer oi? Manda um e-mail e eu te respondo.",
-    "sayHello": "Diz olá"
+    "subtitle": "Tem um projeto em mente ou quer so dizer oi? Manda um e-mail e eu te respondo.",
+    "sayHello": "Diz ola"
   },
   "footer": {
-    "ctaLine1": "Vamos construir algo incrível,",
-    "ctaLine2": "ou só trocar um olá!",
-    "email": "Fique à vontade para entrar em contato pelo",
-    "sayHello": "Diz olá",
+    "ctaLine1": "Vamos construir algo incrivel,",
+    "ctaLine2": "ou so trocar um ola!",
+    "email": "Fique a vontade para entrar em contato pelo",
+    "sayHello": "Diz ola",
     "downloadCv": "Baixar CV",
     "copyright": "© {year} SSUPPLY – Todos os direitos reservados"
   },
   "notFound": {
-    "title": "Página não encontrada",
-    "subtitle": "A página que você está procurando não existe ou foi movida.",
-    "backHome": "Voltar para o início"
+    "title": "Pagina nao encontrada",
+    "subtitle": "A pagina que voce esta procurando nao existe ou foi movida.",
+    "backHome": "Voltar para o inicio"
   },
   "darkMode": {
     "switchToLight": "Mudar para modo claro",
