@@ -17,13 +17,8 @@ export async function generateMetadata({ params }) {
 
   return {
     metadataBase: new URL('https://www.seansupply.com'),
-    title: {
-      default: 'SSUPPLY | Front-end developer portfolio',
-      template: '%s | SSUPPLY',
-    },
-    description: isNl
-      ? 'Kylan Groen is een front-end developer en web designer gevestigd in Rotterdam — gespecialiseerd in pixel-perfecte websites en digitale ervaringen.'
-      : 'Kylan Groen is a front-end developer and web designer based in Rotterdam — crafting pixel-perfect websites and digital experiences.',
+    title: 'SSUPPLY — Front-end Developer Portfolio',
+    description: 'Front-end developer based in Rotterdam. Specialised in React, Next.js, and TypeScript. Building pixel-perfect interfaces.',
     icons: { icon: '/favicon.png' },
     openGraph: {
       type: 'website',

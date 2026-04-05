@@ -4,10 +4,8 @@ import JsonLd from '../../../components/JsonLd'
 export async function generateMetadata({ params }) {
   const { locale } = await params
   return {
-    title: locale === 'nl' ? 'Over Kylan — Front-end Developer' : 'About Kylan | Front-end Developer',
-    description: locale === 'nl'
-      ? 'Leer Kylan Groen kennen — een front-end developer en web designer gevestigd in Rotterdam met een passie voor pixel-perfect design en schone code.'
-      : 'Get to know Kylan Groen — a front-end developer and web designer based in Rotterdam with a passion for pixel-perfect design and clean code.',
+    title: 'About',
+    description: "I'm Kylan Sean Groen, a front-end developer from Rotterdam focused on modern web interfaces and clean, detail-driven code.",
     openGraph: {
       url: locale === 'nl' ? 'https://www.seansupply.com/nl/about' : 'https://www.seansupply.com/about',
     },

@@ -4,6 +4,8 @@ import JsonLd from '../../components/JsonLd'
 export async function generateMetadata({ params }) {
   const { locale } = await params
   return {
+    title: 'SSUPPLY — Front-end Developer Portfolio',
+    description: 'Front-end developer based in Rotterdam. Specialised in React, Next.js, and TypeScript. Building pixel-perfect interfaces.',
     openGraph: {
       url: locale === 'nl' ? 'https://www.seansupply.com/nl' : 'https://www.seansupply.com',
     },

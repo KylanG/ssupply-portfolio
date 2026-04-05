@@ -4,10 +4,8 @@ import JsonLd from '../../../components/JsonLd'
 export async function generateMetadata({ params }) {
   const { locale } = await params
   return {
-    title: locale === 'nl' ? 'Muziekreleases & Producties' : 'Music Releases & Productions',
-    description: locale === 'nl'
-      ? 'Luister naar de laatste muziekreleases en producties van SSUPPLY — beats en melodieën beschikbaar op Spotify en SoundCloud.'
-      : 'Listen to the latest music releases and productions by SSUPPLY — electronic beats and melodies available on Spotify and SoundCloud.',
+    title: 'Music',
+    description: 'Music productions by SSUPPLY. Afro house and electronic sounds as a creative side project.',
     openGraph: {
       url: locale === 'nl' ? 'https://www.seansupply.com/nl/music' : 'https://www.seansupply.com/music',
     },
