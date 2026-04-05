@@ -21,7 +21,7 @@ export default function Navbar() {
     { label: t('work'), href: `${prefix}/work` },
     { label: t('about'), href: `${prefix}/about` },
     { label: t('music'), href: `${prefix}/music` },
-    { label: t('contact'), href: 'mailto:info@seansupply.com' },
+    { label: t('contact'), href: `${prefix}/contact` },
   ]
 
   useEffect(() => {

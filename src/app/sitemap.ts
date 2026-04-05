@@ -8,6 +8,7 @@ const routes = [
   { path: '/about', changeFrequency: 'monthly' as const, priority: 0.8 },
   { path: '/work', changeFrequency: 'monthly' as const, priority: 0.8 },
   { path: '/music', changeFrequency: 'weekly' as const, priority: 0.6 },
+  { path: '/contact', changeFrequency: 'yearly' as const, priority: 0.5 },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -81,6 +81,11 @@
     "switchToLight": "Schakel naar lichte modus",
     "switchToDark": "Schakel naar donkere modus"
   },
+  "contact": {
+    "title": "Neem contact op",
+    "subtitle": "Heb je een project in gedachten of wil je gewoon hallo zeggen? Stuur me een e-mail en ik kom bij je terug.",
+    "sayHello": "Zeg hallo"
+  },
   "language": {
     "switchTo": "Switch to English",
     "current": "NL"

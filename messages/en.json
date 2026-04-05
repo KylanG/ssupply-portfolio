@@ -81,6 +81,11 @@
     "switchToLight": "Switch to light mode",
     "switchToDark": "Switch to dark mode"
   },
+  "contact": {
+    "title": "Get in touch",
+    "subtitle": "Have a project in mind or just want to say hi? Drop me an email and I'll get back to you.",
+    "sayHello": "Say hello"
+  },
   "language": {
     "switchTo": "Switch to Dutch",
     "current": "EN"
