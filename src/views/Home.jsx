@@ -1,11 +1,13 @@
 'use client'
 import { useTranslations } from 'next-intl'
+import dynamic from 'next/dynamic'
 import { useDarkMode } from '../context/DarkModeContext'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
-import MusicSection from '../components/MusicSection'
 import FAQ from '../components/FAQ'
 import Footer from '../components/Footer'
+
+const MusicSection = dynamic(() => import('../components/MusicSection'), { ssr: false })
 
 export default function Home() {
   const { darkMode } = useDarkMode()
