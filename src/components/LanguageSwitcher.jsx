@@ -4,8 +4,8 @@ import { useLocale, useTranslations } from 'next-intl'
 import { usePathname, useRouter } from 'next/navigation'
 import { useDarkMode } from '../context/DarkModeContext'
 
-const LOCALES = ['en', 'nl']
-const LOCALE_LABELS = { en: 'EN', nl: 'NL' }
+const LOCALES = ['en', 'nl', 'pt']
+const LOCALE_LABELS = { en: 'EN', nl: 'NL', pt: 'PT' }
 
 export default function LanguageSwitcher() {
   const locale = useLocale()
@@ -39,13 +39,13 @@ export default function LanguageSwitcher() {
     // Set NEXT_LOCALE cookie so middleware respects explicit choice over Accept-Language
     document.cookie = `NEXT_LOCALE=${nextLocale}; path=/; max-age=31536000`
 
-    const barePath = locale === 'nl'
-      ? (pathname.replace('/nl', '') || '/')
-      : pathname
+    const barePath = locale === 'en'
+      ? pathname
+      : (pathname.replace(`/${locale}`, '') || '/')
 
     const newPath = nextLocale === 'en'
       ? barePath
-      : `/nl${barePath === '/' ? '' : barePath}`
+      : `/${nextLocale}${barePath === '/' ? '' : barePath}`
 
     setOpen(false)
     startTransition(() => router.push(newPath))
@@ -86,7 +86,7 @@ export default function LanguageSwitcher() {
                     : darkMode ? 'text-white/70 hover:bg-white/10 hover:text-white' : 'text-black/60 hover:bg-black/5 hover:text-black'
                 }`}
               >
-                {LOCALE_LABELS[loc]} — {loc === 'en' ? 'English' : 'Nederlands'}
+                {LOCALE_LABELS[loc]} — {loc === 'en' ? 'English' : loc === 'nl' ? 'Nederlands' : 'Português'}
               </button>
             </li>
           ))}

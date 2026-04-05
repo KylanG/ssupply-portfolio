@@ -14,15 +14,17 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { locale } = await params
   const isNl = locale === 'nl'
+  const isPt = locale === 'pt'
 
   return {
     metadataBase: new URL('https://www.seansupply.com'),
+    ...(isPt && { robots: { index: false, follow: false } }),
     title: 'SSUPPLY — Front-end Developer Portfolio',
     description: 'Front-end developer based in Rotterdam. Specialised in React, Next.js, and TypeScript. Building pixel-perfect interfaces.',
     icons: { icon: '/favicon.png' },
     openGraph: {
       type: 'website',
-      locale: isNl ? 'nl_NL' : 'en_US',
+      locale: isNl ? 'nl_NL' : isPt ? 'pt_BR' : 'en_US',
       siteName: 'SSUPPLY',
       images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
     },

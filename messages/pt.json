@@ -1,0 +1,93 @@
+{
+  "nav": {
+    "work": "Trabalho",
+    "about": "Sobre mim",
+    "music": "Música",
+    "contact": "Contato",
+    "sayHello": "Diz olá",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu",
+    "homepage": "Ir para a página inicial"
+  },
+  "home": {
+    "titleLine1": "Oi! Sou Kylan, um desenvolvedor",
+    "titleLine2": "front-end & web designer",
+    "subtitle": "Sou um desenvolvedor e web designer baseado em Roterdã, apaixonado por criatividade e por dar vida a designs pixel-perfeitos.",
+    "sayHello": "Diz olá",
+    "downloadCv": "Baixar CV",
+    "faqTitle": "Perguntas Frequentes",
+    "faqSubtitle": "Ainda tem dúvidas? 🤯\nAqui estão as perguntas mais frequentes",
+    "faq": [
+      {
+        "question": "Que tipo de projetos você aceita?",
+        "answer": "Trabalho em projetos front-end que vão desde portfólios e landing pages até aplicações web mais complexas. Foco em design limpo, interações fluidas e implementação pixel-perfeita."
+      },
+      {
+        "question": "Você está disponível para trabalho freelance?",
+        "answer": "Não! No momento não estou aberto a projetos freelance. Mas fique à vontade para entrar em contato pelo info@seansupply.com e podemos conversar sobre o que você tem em mente."
+      },
+      {
+        "question": "Quais ferramentas e tecnologias você usa?",
+        "answer": "Trabalho principalmente com React, Next.js e Tailwind CSS no front-end. Para design uso Figma e faço deploy da maioria dos projetos na Vercel."
+      },
+      {
+        "question": "Você também faz design, ou só desenvolvimento?",
+        "answer": "Os dois! Gosto de todo o processo, do design ao desenvolvimento. Posso levar um projeto de uma ideia bruta até um site ao vivo e bem acabado."
+      }
+    ]
+  },
+  "about": {
+    "title": "Sobre mim",
+    "subtitle": "Desenvolvedor front-end e web designer baseado em Roterdã, apaixonado por criatividade e design pixel-perfeito."
+  },
+  "work": {
+    "title": "Veja um pouco do meu trabalho.",
+    "subtitle": "Uma coleção de coisas que construí, desenhei e entreguei. Mais em breve.",
+    "sayHello": "Diz olá"
+  },
+  "music": {
+    "title": "Minha Música",
+    "subtitle": "Uma coleção dos meus lançamentos, produções e sons mais recentes saídos do estúdio.",
+    "listenOnSpotify": "Ouvir no Spotify",
+    "followOnSoundcloud": "Seguir no Soundcloud"
+  },
+  "musicSection": {
+    "sectionTitle": "Meus Últimos Lançamentos",
+    "sectionSubtitle": "Uma seleção das minhas produções musicais mais recentes. De paisagens sonoras atmosféricas a batidas pesadas — é isso que tem saído do estúdio ultimamente.",
+    "allReleases": "Todos os lançamentos",
+    "moreAboutMusic": "Mais sobre minha música",
+    "loading": "Carregando lançamentos...",
+    "error": "Não foi possível carregar os lançamentos.",
+    "previousRelease": "Lançamento anterior",
+    "nextRelease": "Próximo lançamento",
+    "listenOnSpotify": "Ouvir no Spotify",
+    "close": "Fechar",
+    "goTo": "Ir para {name}"
+  },
+  "contact": {
+    "title": "Entre em contato",
+    "subtitle": "Tem um projeto em mente ou quer só dizer oi? Manda um e-mail e eu te respondo.",
+    "sayHello": "Diz olá"
+  },
+  "footer": {
+    "ctaLine1": "Vamos construir algo incrível,",
+    "ctaLine2": "ou só trocar um olá!",
+    "email": "Fique à vontade para entrar em contato pelo",
+    "sayHello": "Diz olá",
+    "downloadCv": "Baixar CV",
+    "copyright": "© {year} SSUPPLY – Todos os direitos reservados"
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "subtitle": "A página que você está procurando não existe ou foi movida.",
+    "backHome": "Voltar para o início"
+  },
+  "darkMode": {
+    "switchToLight": "Mudar para modo claro",
+    "switchToDark": "Mudar para modo escuro"
+  },
+  "language": {
+    "switchTo": "Switch to English",
+    "current": "PT"
+  }
+}
