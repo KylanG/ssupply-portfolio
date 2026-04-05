@@ -1,12 +1,11 @@
-'use client'
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import MusicSection from '../components/MusicSection'
 import Footer from '../components/Footer'
 
-export default function Music() {
-  const t = useTranslations('music')
+export default async function Music() {
+  const t = await getTranslations('music')
 
   return (
     <div className="relative min-h-screen flex flex-col">
