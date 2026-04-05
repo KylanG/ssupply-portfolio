@@ -1,8 +1,12 @@
 import Home from '../../views/Home'
 import JsonLd from '../../components/JsonLd'
 
-export async function generateMetadata() {
+export async function generateMetadata({ params }) {
+  const { locale } = await params
   return {
+    openGraph: {
+      url: locale === 'nl' ? 'https://www.seansupply.com/nl' : 'https://www.seansupply.com',
+    },
     alternates: {
       languages: {
         en: 'https://www.seansupply.com',

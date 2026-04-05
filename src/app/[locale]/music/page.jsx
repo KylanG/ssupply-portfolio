@@ -4,10 +4,13 @@ import JsonLd from '../../../components/JsonLd'
 export async function generateMetadata({ params }) {
   const { locale } = await params
   return {
-    title: locale === 'nl' ? 'Muziek' : 'Music',
+    title: locale === 'nl' ? 'Muziekreleases & Producties' : 'Music Releases & Productions',
     description: locale === 'nl'
-      ? 'Luister naar de laatste releases en producties van SSUPPLY — beschikbaar op Spotify en SoundCloud.'
-      : 'Listen to the latest releases and productions by SSUPPLY — available on Spotify and SoundCloud.',
+      ? 'Luister naar de laatste muziekreleases en producties van SSUPPLY — beats en melodieën beschikbaar op Spotify en SoundCloud.'
+      : 'Listen to the latest music releases and productions by SSUPPLY — electronic beats and melodies available on Spotify and SoundCloud.',
+    openGraph: {
+      url: locale === 'nl' ? 'https://www.seansupply.com/nl/music' : 'https://www.seansupply.com/music',
+    },
     alternates: {
       languages: {
         en: 'https://www.seansupply.com/music',

@@ -22,13 +22,14 @@ export async function generateMetadata({ params }) {
       template: '%s | SSUPPLY',
     },
     description: isNl
-      ? 'Front-end developer & web designer gevestigd in Rotterdam.'
-      : 'Front-end developer & web designer based in Rotterdam.',
+      ? 'Kylan Groen is een front-end developer en web designer gevestigd in Rotterdam — gespecialiseerd in pixel-perfecte websites en digitale ervaringen.'
+      : 'Kylan Groen is a front-end developer and web designer based in Rotterdam — crafting pixel-perfect websites and digital experiences.',
     icons: { icon: '/favicon.png' },
     openGraph: {
       type: 'website',
       locale: isNl ? 'nl_NL' : 'en_US',
       siteName: 'SSUPPLY',
+      images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
     },
     twitter: { card: 'summary_large_image' },
   }
