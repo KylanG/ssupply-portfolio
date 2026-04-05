@@ -4,10 +4,14 @@ import JsonLd from '../../../components/JsonLd'
 export async function generateMetadata({ params }) {
   const { locale } = await params
   return {
-    title: 'Music',
-    description: 'Music productions by SSUPPLY. Afro house and electronic sounds as a creative side project.',
+    title: locale === 'nl' ? 'Muziek' : locale === 'pt' ? 'Musica' : 'Music',
+    description: locale === 'nl'
+      ? 'Muziekproducties door SSUPPLY. Afro house en elektronische geluiden als creatief nevenproject.'
+      : locale === 'pt'
+      ? 'Producoes musicais por SSUPPLY. Afro house e sons eletronicos como projeto criativo paralelo.'
+      : 'Music productions by SSUPPLY. Afro house and electronic sounds as a creative side project.',
     openGraph: {
-      url: locale === 'nl' ? 'https://www.seansupply.com/nl/music' : 'https://www.seansupply.com/music',
+      url: locale === 'nl' ? 'https://www.seansupply.com/nl/music' : locale === 'pt' ? 'https://www.seansupply.com/pt/music' : 'https://www.seansupply.com/music',
     },
     alternates: {
       languages: {

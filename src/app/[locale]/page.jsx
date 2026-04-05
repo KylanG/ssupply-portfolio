@@ -5,9 +5,13 @@ export async function generateMetadata({ params }) {
   const { locale } = await params
   return {
     title: 'SSUPPLY — Front-end Developer Portfolio',
-    description: 'Front-end developer based in Rotterdam. Specialised in React, Next.js, and TypeScript. Building pixel-perfect interfaces.',
+    description: locale === 'nl'
+      ? 'Front-end developer gevestigd in Rotterdam. Gespecialiseerd in React, Next.js en TypeScript. Bouwt pixel-perfecte interfaces.'
+      : locale === 'pt'
+      ? 'Desenvolvedor front-end baseado em Rotterdam. Especializado em React, Next.js e TypeScript. Criando interfaces pixel-perfeitas.'
+      : 'Front-end developer based in Rotterdam. Specialised in React, Next.js, and TypeScript. Building pixel-perfect interfaces.',
     openGraph: {
-      url: locale === 'nl' ? 'https://www.seansupply.com/nl' : 'https://www.seansupply.com',
+      url: locale === 'nl' ? 'https://www.seansupply.com/nl' : locale === 'pt' ? 'https://www.seansupply.com/pt' : 'https://www.seansupply.com',
     },
     alternates: {
       languages: {
