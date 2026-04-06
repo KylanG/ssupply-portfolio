@@ -7,6 +7,20 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/wp-content/uploads/Kylan-Sean-Groen-Curriculum-Vitae.pdf',
+        destination: '/kylan-groen-cv.pdf',
+        permanent: true,
+      },
+      {
+        source: '/wp-content/uploads/Curriculum-Vitae-Kylan-Sean-Groen.pdf',
+        destination: '/kylan-groen-cv.pdf',
+        permanent: true,
+      },
+    ]
+  },
   images: {
     remotePatterns: [
       {
