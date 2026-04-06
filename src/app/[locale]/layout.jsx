@@ -6,6 +6,7 @@ import { routing } from '../../i18n/routing'
 import ClientProviders from '../../components/ClientProviders'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import Script from 'next/script'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -49,6 +50,11 @@ export default async function LocaleLayout({ children, params }) {
         </NextIntlClientProvider>
         <Analytics />
         <SpeedInsights />
+        <Script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="IVudNs/5r1pUTWugJfYvbw"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )
