@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     }
     const subjectLabel = subjectLabels[subject] ?? subject
 
-    await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: 'SSUPPLY <noreply@seansupply.com>',
       to: process.env.CONTACT_EMAIL!,
       subject: `[SSUPPLY] ${subjectLabel} — from ${firstName} ${lastName}`,
@@ -27,6 +27,13 @@ export async function POST(req: NextRequest) {
         <p>${message.replace(/\n/g, '<br />')}</p>
       `,
     })
+
+    if (error) {
+      console.error('Resend error:', error)
+      return NextResponse.json({ error: 'Failed to send message.' }, { status: 500 })
+    }
+
+    console.log('Resend success:', data)
 
     return NextResponse.json({ success: true })
   } catch (error) {
