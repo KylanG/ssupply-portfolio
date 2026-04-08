@@ -73,6 +73,7 @@
     "lastNamePlaceholder": "Silva",
     "email": "E-mail",
     "emailPlaceholder": "joao@exemplo.com",
+    "emailInvalid": "Por favor, insira um e-mail valido.",
     "subject": "Assunto",
     "subjects": {
       "generalEnquiry": "Pergunta geral",

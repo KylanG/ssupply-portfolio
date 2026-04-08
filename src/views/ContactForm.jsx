@@ -15,6 +15,7 @@ export default function ContactForm() {
   const EMPTY = { firstName: '', lastName: '', email: '', subject: SUBJECTS[0].key, message: '' }
   const [form, setForm] = useState(() => EMPTY)
   const [status, setStatus] = useState(null) // null | 'loading' | 'success' | 'error'
+  const [emailError, setEmailError] = useState('')
 
   const labelClass = `font-secondary text-xs ${darkMode ? 'text-white' : 'text-black'}`
 
@@ -26,10 +27,21 @@ export default function ContactForm() {
 
   function handleChange(e) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    if (e.target.name === 'email') setEmailError('')
+  }
+
+  function handleEmailBlur() {
+    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      setEmailError(t('emailInvalid'))
+    }
   }
 
   async function handleSubmit(e) {
     e.preventDefault()
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      setEmailError(t('emailInvalid'))
+      return
+    }
     setStatus('loading')
     try {
       const res = await fetch('/api/contact', {
@@ -117,13 +129,17 @@ export default function ContactForm() {
                 type="email"
                 value={form.email}
                 onChange={handleChange}
+                onBlur={handleEmailBlur}
                 placeholder={t('email')}
                 required
                 aria-required="true"
-                aria-describedby={status === 'error' ? 'form-error' : undefined}
+                aria-describedby={emailError ? 'email-error' : status === 'error' ? 'form-error' : undefined}
                 autoComplete="email"
-                className={inputClass}
+                className={`${inputClass} ${emailError ? 'border-red-500' : ''}`}
               />
+              {emailError && (
+                <p id="email-error" role="alert" className="text-red-500 font-secondary text-xs mt-1">{emailError}</p>
+              )}
             </div>
 
             {/* Subject */}
@@ -161,10 +177,10 @@ export default function ContactForm() {
 
             {/* Status messages */}
             {status === 'success' && (
-              <p role="status" className="text-green-600 font-secondary text-sm">{t('successMessage')}</p>
+              <p role="status" className="text-center py-3 px-4 rounded-xl bg-green-50 text-green-700 font-secondary text-sm border border-green-200">{t('successMessage')}</p>
             )}
             {status === 'error' && (
-              <p id="form-error" role="alert" className="text-red-600 font-secondary text-sm">{t('errorMessage')}</p>
+              <p id="form-error" role="alert" className="text-center py-3 px-4 rounded-xl bg-red-50 text-red-700 font-secondary text-sm border border-red-200">{t('errorMessage')}</p>
             )}
 
             {/* Submit */}

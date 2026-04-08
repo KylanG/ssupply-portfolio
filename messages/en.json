@@ -90,6 +90,7 @@
     "lastNamePlaceholder": "Doe",
     "email": "Email address",
     "emailPlaceholder": "john@example.com",
+    "emailInvalid": "Please enter a valid email address.",
     "subject": "Subject",
     "subjects": {
       "generalEnquiry": "General enquiry",

@@ -90,6 +90,7 @@
     "lastNamePlaceholder": "Achternaam",
     "email": "E-mailadres",
     "emailPlaceholder": "E-mailadres",
+    "emailInvalid": "Vul een geldig e-mailadres in.",
     "subject": "Onderwerp",
     "subjects": {
       "generalEnquiry": "Algemene vraag",
