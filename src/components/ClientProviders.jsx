@@ -1,23 +1,31 @@
 'use client'
 import { useEffect } from 'react'
-import Lenis from 'lenis'
 import { DarkModeProvider, useDarkMode } from '../context/DarkModeContext'
 
 function LenisInit() {
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.6,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
+    let lenis
+    let rafId
+
+    import('lenis').then(({ default: Lenis }) => {
+      lenis = new Lenis({
+        duration: 1.6,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+      })
+
+      function raf(time) {
+        lenis.raf(time)
+        rafId = requestAnimationFrame(raf)
+      }
+
+      rafId = requestAnimationFrame(raf)
     })
 
-    function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
+    return () => {
+      cancelAnimationFrame(rafId)
+      lenis?.destroy()
     }
-
-    requestAnimationFrame(raf)
-    return () => lenis.destroy()
   }, [])
 
   return null

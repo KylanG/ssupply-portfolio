@@ -8,6 +8,23 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import Script from 'next/script'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import localFont from 'next/font/local'
+
+const bueno = localFont({
+  src: '../../../public/fonts/6849a000350c88ee79310a0c_Bueno-Bold.woff2',
+  variable: '--font-bueno',
+  weight: 'bold',
+  display: 'fallback',
+  preload: true,
+})
+
+const apfelGrotezk = localFont({
+  src: '../../../public/fonts/ApfelGrotezk-Regular.woff2',
+  variable: '--font-apfel',
+  weight: 'normal',
+  display: 'fallback',
+  preload: true,
+})
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -42,7 +59,7 @@ export default async function LocaleLayout({ children, params }) {
   const messages = await getMessages()
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={`${bueno.variable} ${apfelGrotezk.variable}`}>
       <body>
         <NextIntlClientProvider messages={messages}>
           <ClientProviders>

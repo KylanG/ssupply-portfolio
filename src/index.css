@@ -1,28 +1,14 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "ApfelGrotezk";
-  src: url("/fonts/ApfelGrotezk-Regular.woff2") format("woff2");
-  font-weight: normal;
-  font-display: fallback;
-}
-
-@font-face {
-  font-family: "Bueno";
-  src: url("/fonts/6849a000350c88ee79310a0c_Bueno-Bold.woff2") format("woff2");
-  font-weight: bold;
-  font-display: fallback;
-}
-
 @theme {
---breakpoint-md: 830px;
+  --breakpoint-md: 830px;
 
   --color-black: #000;
   --color-white: #fff;
   --color-off-white: #f5f5f5;
 
-  --font-primary: "Bueno", sans-serif;
-  --font-secondary: "ApfelGrotezk", sans-serif;
+  --font-primary: var(--font-bueno), sans-serif;
+  --font-secondary: var(--font-apfel), sans-serif;
 }
 
 .nav-link {
