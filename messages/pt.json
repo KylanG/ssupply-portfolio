@@ -66,8 +66,19 @@
   },
   "contact": {
     "title": "Entre em contato",
-    "subtitle": "Tem um projeto em mente ou quer so dizer oi? Manda um e-mail e eu te respondo.",
-    "sayHello": "Diz ola"
+    "subtitle": "Tem um projeto em mente ou quer so dizer oi? Manda uma mensagem e eu te respondo.",
+    "firstName": "Nome",
+    "lastName": "Sobrenome",
+    "email": "E-mail",
+    "messagePlaceholder": "Sua mensagem...",
+    "submit": "Diz ola 👋",
+    "sending": "Enviando...",
+    "successMessage": "Mensagem enviada! Responderei em breve.",
+    "errorMessage": "Algo deu errado. Tente novamente ou me mande um e-mail diretamente.",
+    "ctaTitle": "Vamos trabalhar juntos",
+    "ctaSubtitle": "Aberto a novos projetos, colaboracoes e ideias criativas.",
+    "sayHello": "Diz ola",
+    "checkWork": "Veja meu trabalho"
   },
   "footer": {
     "ctaLine1": "Vamos construir algo incrivel,",

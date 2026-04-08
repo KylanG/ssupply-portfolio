@@ -84,7 +84,18 @@
   "contact": {
     "title": "Get in touch",
     "subtitle": "Have a project in mind or just want to say hi? Drop me an email and I'll get back to you.",
-    "sayHello": "Say hello"
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email address",
+    "messagePlaceholder": "Your message...",
+    "submit": "Say hello 👋",
+    "sending": "Sending…",
+    "successMessage": "Message sent! I'll get back to you soon.",
+    "errorMessage": "Something went wrong. Please try again or email me directly.",
+    "ctaTitle": "Let's work together",
+    "ctaSubtitle": "Open to new projects, collaborations, and creative ideas.",
+    "sayHello": "Say hello",
+    "checkWork": "Check out my work"
   },
   "language": {
     "switchTo": "Switch to Dutch",

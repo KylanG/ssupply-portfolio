@@ -1,4 +1,4 @@
-import Contact from '../../../views/Contact'
+import ContactForm from '../../../views/ContactForm'
 
 export async function generateMetadata({ params }) {
   const { locale } = await params
@@ -22,5 +22,5 @@ export async function generateMetadata({ params }) {
 }
 
 export default function Page() {
-  return <Contact />
+  return <ContactForm />
 }

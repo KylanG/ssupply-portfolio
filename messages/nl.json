@@ -83,8 +83,19 @@
   },
   "contact": {
     "title": "Neem contact op",
-    "subtitle": "Heb je een project in gedachten of wil je gewoon hallo zeggen? Stuur me een e-mail en ik kom bij je terug.",
-    "sayHello": "Zeg hallo"
+    "subtitle": "Heb je een project in gedachten of wil je gewoon hallo zeggen? Stuur me een bericht en ik kom bij je terug.",
+    "firstName": "Voornaam",
+    "lastName": "Achternaam",
+    "email": "E-mailadres",
+    "messagePlaceholder": "Je bericht...",
+    "submit": "Zeg hallo 👋",
+    "sending": "Verzenden…",
+    "successMessage": "Bericht verzonden! Ik kom zo snel mogelijk bij je terug.",
+    "errorMessage": "Er ging iets mis. Probeer het opnieuw of mail me rechtstreeks.",
+    "ctaTitle": "Laten we samenwerken",
+    "ctaSubtitle": "Open voor nieuwe projecten, samenwerkingen en creatieve ideeën.",
+    "sayHello": "Zeg hallo",
+    "checkWork": "Bekijk mijn werk"
   },
   "language": {
     "switchTo": "Switch to English",
