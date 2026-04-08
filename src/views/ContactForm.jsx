@@ -75,55 +75,67 @@ export default function ContactForm() {
 
             {/* Name row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input
-                name="firstName"
-                value={form.firstName}
-                onChange={handleChange}
-                placeholder={t('firstName')}
-                className={inputClass}
-              />
-              <input
-                name="lastName"
-                value={form.lastName}
-                onChange={handleChange}
-                placeholder={t('lastName')}
-                className={inputClass}
-              />
+              <label className="flex flex-col gap-1.5">
+                <span className={`font-secondary text-xs ${darkMode ? 'text-white/50' : 'text-black/50'}`}>{t('firstName')}</span>
+                <input
+                  name="firstName"
+                  value={form.firstName}
+                  onChange={handleChange}
+                  className={inputClass}
+                />
+              </label>
+              <label className="flex flex-col gap-1.5">
+                <span className={`font-secondary text-xs ${darkMode ? 'text-white/50' : 'text-black/50'}`}>{t('lastName')}</span>
+                <input
+                  name="lastName"
+                  value={form.lastName}
+                  onChange={handleChange}
+                  className={inputClass}
+                />
+              </label>
             </div>
 
             {/* Email */}
-            <input
-              name="email"
-              type="email"
-              value={form.email}
-              onChange={handleChange}
-              placeholder={t('email')}
-              required
-              className={inputClass}
-            />
+            <label className="flex flex-col gap-1.5">
+              <span className={`font-secondary text-xs ${darkMode ? 'text-white/50' : 'text-black/50'}`}>{t('email')}</span>
+              <input
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={handleChange}
+                required
+                className={inputClass}
+              />
+            </label>
 
             {/* Subject */}
-            <select
-              name="subject"
-              value={form.subject}
-              onChange={handleChange}
-              className={inputClass}
-            >
-              {SUBJECTS.map((s) => (
-                <option key={s} value={s}>{s}</option>
-              ))}
-            </select>
+            <label className="flex flex-col gap-1.5">
+              <span className={`font-secondary text-xs ${darkMode ? 'text-white/50' : 'text-black/50'}`}>{t('subject')}</span>
+              <select
+                name="subject"
+                value={form.subject}
+                onChange={handleChange}
+                className={inputClass}
+              >
+                {SUBJECTS.map((s) => (
+                  <option key={s} value={s}>{s}</option>
+                ))}
+              </select>
+            </label>
 
             {/* Message */}
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              placeholder={t('messagePlaceholder')}
-              required
-              rows={6}
-              className={`${inputClass} resize-y`}
-            />
+            <label className="flex flex-col gap-1.5">
+              <span className={`font-secondary text-xs ${darkMode ? 'text-white/50' : 'text-black/50'}`}>{t('message')}</span>
+              <textarea
+                name="message"
+                value={form.message}
+                onChange={handleChange}
+                placeholder={t('messagePlaceholder')}
+                required
+                rows={6}
+                className={`${inputClass} resize-y`}
+              />
+            </label>
 
             {/* Status messages */}
             {status === 'success' && (

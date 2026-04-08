@@ -87,6 +87,8 @@
     "firstName": "Voornaam",
     "lastName": "Achternaam",
     "email": "E-mailadres",
+    "subject": "Onderwerp",
+    "message": "Bericht",
     "messagePlaceholder": "Je bericht...",
     "submit": "Zeg hallo 👋",
     "sending": "Verzenden…",

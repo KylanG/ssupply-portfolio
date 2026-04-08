@@ -87,6 +87,8 @@
     "firstName": "First name",
     "lastName": "Last name",
     "email": "Email address",
+    "subject": "Subject",
+    "message": "Message",
     "messagePlaceholder": "Your message...",
     "submit": "Say hello 👋",
     "sending": "Sending…",

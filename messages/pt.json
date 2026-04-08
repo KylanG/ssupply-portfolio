@@ -70,6 +70,8 @@
     "firstName": "Nome",
     "lastName": "Sobrenome",
     "email": "E-mail",
+    "subject": "Assunto",
+    "message": "Mensagem",
     "messagePlaceholder": "Sua mensagem...",
     "submit": "Diz ola 👋",
     "sending": "Enviando...",
