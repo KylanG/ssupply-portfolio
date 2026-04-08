@@ -68,9 +68,18 @@
     "title": "Entre em contato",
     "subtitle": "Tem um projeto em mente ou quer so dizer oi? Manda uma mensagem e eu te respondo.",
     "firstName": "Nome",
+    "firstNamePlaceholder": "Joao",
     "lastName": "Sobrenome",
+    "lastNamePlaceholder": "Silva",
     "email": "E-mail",
+    "emailPlaceholder": "joao@exemplo.com",
     "subject": "Assunto",
+    "subjects": {
+      "generalEnquiry": "Pergunta geral",
+      "support": "Suporte",
+      "partnership": "Parceria",
+      "other": "Outro"
+    },
     "message": "Mensagem",
     "messagePlaceholder": "Sua mensagem...",
     "submit": "Diz ola 👋",

@@ -85,9 +85,18 @@
     "title": "Neem contact op",
     "subtitle": "Heb je een project in gedachten of wil je gewoon hallo zeggen? Stuur me een bericht en ik kom bij je terug.",
     "firstName": "Voornaam",
+    "firstNamePlaceholder": "Jan",
     "lastName": "Achternaam",
+    "lastNamePlaceholder": "Janssen",
     "email": "E-mailadres",
+    "emailPlaceholder": "jan@voorbeeld.nl",
     "subject": "Onderwerp",
+    "subjects": {
+      "generalEnquiry": "Algemene vraag",
+      "support": "Ondersteuning",
+      "partnership": "Samenwerking",
+      "other": "Overig"
+    },
     "message": "Bericht",
     "messagePlaceholder": "Je bericht...",
     "submit": "Zeg hallo 👋",

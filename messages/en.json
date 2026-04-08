@@ -85,9 +85,18 @@
     "title": "Get in touch",
     "subtitle": "Have a project in mind or just want to say hi? Drop me an email and I'll get back to you.",
     "firstName": "First name",
+    "firstNamePlaceholder": "John",
     "lastName": "Last name",
+    "lastNamePlaceholder": "Doe",
     "email": "Email address",
+    "emailPlaceholder": "john@example.com",
     "subject": "Subject",
+    "subjects": {
+      "generalEnquiry": "General enquiry",
+      "support": "Support",
+      "partnership": "Partnership",
+      "other": "Other"
+    },
     "message": "Message",
     "messagePlaceholder": "Your message...",
     "submit": "Say hello 👋",

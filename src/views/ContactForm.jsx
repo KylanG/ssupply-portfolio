@@ -6,14 +6,15 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Button from '../components/Button'
 
-const SUBJECTS = ['General enquiry', 'Support', 'Partnership', 'Other']
-
-const EMPTY = { firstName: '', lastName: '', email: '', subject: SUBJECTS[0], message: '' }
+const SUBJECT_KEYS = ['generalEnquiry', 'support', 'partnership', 'other']
 
 export default function ContactForm() {
   const { darkMode } = useDarkMode()
   const t = useTranslations('contact')
-  const [form, setForm] = useState(EMPTY)
+
+  const SUBJECTS = SUBJECT_KEYS.map((key) => ({ key, label: t(`subjects.${key}`) }))
+  const EMPTY = { firstName: '', lastName: '', email: '', subject: SUBJECTS[0].key, message: '' }
+  const [form, setForm] = useState(() => EMPTY)
   const [status, setStatus] = useState(null) // null | 'loading' | 'success' | 'error'
 
   const inputClass = `w-full px-4 py-3 rounded-xl border text-sm font-secondary outline-none transition-colors duration-150 ${
@@ -81,6 +82,7 @@ export default function ContactForm() {
                   name="firstName"
                   value={form.firstName}
                   onChange={handleChange}
+                  placeholder={t('firstNamePlaceholder')}
                   className={inputClass}
                 />
               </label>
@@ -90,6 +92,7 @@ export default function ContactForm() {
                   name="lastName"
                   value={form.lastName}
                   onChange={handleChange}
+                  placeholder={t('lastNamePlaceholder')}
                   className={inputClass}
                 />
               </label>
@@ -103,6 +106,7 @@ export default function ContactForm() {
                 type="email"
                 value={form.email}
                 onChange={handleChange}
+                placeholder={t('emailPlaceholder')}
                 required
                 className={inputClass}
               />
@@ -117,8 +121,8 @@ export default function ContactForm() {
                 onChange={handleChange}
                 className={inputClass}
               >
-                {SUBJECTS.map((s) => (
-                  <option key={s} value={s}>{s}</option>
+                {SUBJECTS.map(({ key, label }) => (
+                  <option key={key} value={key}>{label}</option>
                 ))}
               </select>
             </label>
