@@ -4,7 +4,6 @@ import { useTranslations } from 'next-intl'
 import { useDarkMode } from '../context/DarkModeContext'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import Button from '../components/Button'
 
 const SUBJECT_KEYS = ['generalEnquiry', 'support', 'partnership', 'other']
 
@@ -17,11 +16,11 @@ export default function ContactForm() {
   const [form, setForm] = useState(() => EMPTY)
   const [status, setStatus] = useState(null) // null | 'loading' | 'success' | 'error'
 
-  const labelClass = `font-secondary text-xs text-black`
+  const labelClass = `font-secondary text-xs ${darkMode ? 'text-white' : 'text-black'}`
 
   const inputClass = `w-full px-4 py-3 rounded-xl border text-sm font-secondary outline-none transition-colors duration-150 focus:ring-2 focus:ring-black/20 ${
     darkMode
-      ? 'bg-white/5 border-white/15 text-white placeholder-white/60 focus:border-white/40'
+      ? 'bg-black border-white/15 text-white placeholder-white focus:border-white/40'
       : 'bg-white border-[#DCDCDC] text-black placeholder-black focus:border-black/30'
   }`
 
@@ -184,21 +183,6 @@ export default function ContactForm() {
           </form>
         </div>
 
-        {/* CTA section */}
-        <div className="text-center mt-24">
-          <h2 className="font-primary uppercase text-3xl md:text-4xl mb-4">{t('ctaTitle')}</h2>
-          <p className={`font-secondary text-base mb-8 ${darkMode ? 'text-white/60' : 'text-black/60'}`}>
-            {t('ctaSubtitle')}
-          </p>
-          <div className="flex justify-center gap-3 flex-wrap">
-            <Button href="mailto:info@seansupply.com" variant="primary">
-              <span>{t('sayHello')}</span><span aria-hidden="true">👋🏻</span>
-            </Button>
-            <Button href="/work" variant="secondary">
-              <span>{t('checkWork')}</span><span aria-hidden="true">🔗</span>
-            </Button>
-          </div>
-        </div>
 
       </main>
 
