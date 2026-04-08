@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     const subjectLabel = subjectLabels[subject] ?? subject
 
     await resend.emails.send({
-      from: 'onboarding@resend.dev',
+      from: 'SSUPPLY <noreply@seansupply.com>',
       to: process.env.CONTACT_EMAIL!,
       subject: `[SSUPPLY] ${subjectLabel} — from ${firstName} ${lastName}`,
       html: `
