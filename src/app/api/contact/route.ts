@@ -4,9 +4,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
 export async function POST(req: NextRequest) {
-  console.log('API key present:', !!process.env.RESEND_API_KEY)
-  console.log('Contact email:', process.env.CONTACT_EMAIL)
-
   try {
     const resend = new Resend(process.env.RESEND_API_KEY)
     const { firstName, lastName, email, subject, message } = await req.json()
