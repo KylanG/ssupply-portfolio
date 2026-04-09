@@ -6,7 +6,11 @@ import { Resend } from 'resend'
 export async function POST(req: NextRequest) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY)
-    const { firstName, lastName, email, subject, message } = await req.json()
+    const { firstName, lastName, email, subject, message, website } = await req.json()
+
+    if (website) {
+      return NextResponse.json({ success: true })
+    }
 
     const subjectLabels: Record<string, string> = {
       generalEnquiry: 'General enquiry',

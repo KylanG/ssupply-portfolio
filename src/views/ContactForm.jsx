@@ -12,7 +12,7 @@ export default function ContactForm() {
   const t = useTranslations('contact')
 
   const SUBJECTS = SUBJECT_KEYS.map((key) => ({ key, label: t(`subjects.${key}`) }))
-  const EMPTY = { firstName: '', lastName: '', email: '', subject: SUBJECTS[0].key, message: '' }
+  const EMPTY = { firstName: '', lastName: '', email: '', subject: SUBJECTS[0].key, message: '', website: '' }
   const [form, setForm] = useState(() => EMPTY)
   const [status, setStatus] = useState(null) // null | 'loading' | 'success' | 'error'
   const [emailError, setEmailError] = useState('')
@@ -182,6 +182,17 @@ export default function ContactForm() {
             {status === 'error' && (
               <p id="form-error" role="alert" className="text-center py-3 px-4 rounded-xl bg-red-50 text-red-700 font-secondary text-sm border border-red-200">{t('errorMessage')}</p>
             )}
+
+            {/* Honeypot */}
+            <input
+              type="text"
+              name="website"
+              value={form.website}
+              onChange={handleChange}
+              tabIndex={-1}
+              autoComplete="off"
+              style={{ position: 'absolute', left: '-9999px', opacity: 0 }}
+            />
 
             {/* Submit */}
             <button
