@@ -4,7 +4,7 @@ import JsonLd from '../../../components/JsonLd'
 export async function generateMetadata({ params }) {
   const { locale } = await params
   return {
-    title: locale === 'nl' ? 'Over mij' : locale === 'pt' ? 'Sobre mim' : 'About',
+    title: locale === 'nl' ? 'Over Mij' : locale === 'pt' ? 'Sobre mim' : 'About',
     description: locale === 'nl'
       ? 'Ik ben Kylan Sean Groen, een front-end developer uit Rotterdam gericht op moderne webinterfaces en schone, detailgerichte code.'
       : locale === 'pt'
