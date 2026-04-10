@@ -6,11 +6,20 @@ export async function generateMetadata({ params }) {
   return {
     title: locale === 'nl' ? 'Muziek' : locale === 'pt' ? 'Musica' : 'Music',
     description: locale === 'nl'
-      ? 'Muziekproducties door SSUPPLY. Afro house en elektronische geluiden als creatief nevenproject.'
+      ? 'House muziekproducties van Kylan Sean Groen. Ontdek de nieuwste tracks en releases van SSUPPLY.'
       : locale === 'pt'
       ? 'Producoes musicais por SSUPPLY. Afro house e sons eletronicos como projeto criativo paralelo.'
-      : 'Music productions by SSUPPLY. Afro house and electronic sounds as a creative side project.',
+      : 'House music productions by Kylan Sean Groen. Explore the latest tracks and releases from SSUPPLY.',
     openGraph: {
+      type: 'website',
+      siteName: 'SSUPPLY',
+      images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
+      title: locale === 'nl' ? 'Muziek' : locale === 'pt' ? 'Musica' : 'Music',
+      description: locale === 'nl'
+        ? 'House muziekproducties van Kylan Sean Groen. Ontdek de nieuwste tracks en releases van SSUPPLY.'
+        : locale === 'pt'
+        ? 'Producoes musicais por SSUPPLY. Afro house e sons eletronicos como projeto criativo paralelo.'
+        : 'House music productions by Kylan Sean Groen. Explore the latest tracks and releases from SSUPPLY.',
       url: locale === 'nl' ? 'https://www.seansupply.com/nl/music' : locale === 'pt' ? 'https://www.seansupply.com/pt/music' : 'https://www.seansupply.com/music',
     },
     alternates: {

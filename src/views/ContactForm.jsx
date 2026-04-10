@@ -67,20 +67,9 @@ export default function ContactForm() {
         {/* Heading */}
         <div className="text-center mb-12">
           <h1 className="font-primary uppercase text-4xl md:text-5xl mb-4">{t('title')}</h1>
-          <p className={`font-secondary text-base md:text-lg max-w-xl mx-auto ${darkMode ? 'text-white/60' : 'text-black/60'}`}>
+          <p className={`font-secondary text-base md:text-lg max-w-xl mx-auto ${darkMode ? 'text-white' : 'text-black'}`}>
             {t('subtitle')}
           </p>
-        </div>
-
-        {/* Email links */}
-        <div className="flex justify-center gap-6 mb-10 font-secondary text-sm">
-          <a
-            href="mailto:info@seansupply.com"
-            className={`flex items-center gap-2 underline underline-offset-4 ${darkMode ? 'text-white/70 hover:text-white' : 'text-black/60 hover:text-black'} transition-colors`}
-          >
-            <span aria-hidden="true">✉</span>
-            <span>info@seansupply.com</span>
-          </a>
         </div>
 
         {/* Form card */}

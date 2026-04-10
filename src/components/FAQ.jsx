@@ -21,7 +21,7 @@ export default function FAQ({ title, subtitle, items = [] }) {
         )}
 
         {subtitle && (
-          <p className={`font-secondary text-sm md:text-base text-center mb-12 whitespace-pre-line ${darkMode ? 'text-white' : 'text-black'}`}>
+          <p className={`font-secondary text-base md:text-lg text-center mb-12 whitespace-pre-line ${darkMode ? 'text-white' : 'text-black'}`}>
             {subtitle}
           </p>
         )}
@@ -54,7 +54,7 @@ export default function FAQ({ title, subtitle, items = [] }) {
                   aria-labelledby={buttonId}
                   className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 pb-5' : 'max-h-0'}`}
                 >
-                  <p className={`font-secondary text-base leading-relaxed ${darkMode ? 'text-white' : 'text-black'}`}>
+                  <p className={`font-secondary text-lg leading-relaxed ${darkMode ? 'text-white' : 'text-black'}`}>
                     {item.answer}
                   </p>
                 </div>

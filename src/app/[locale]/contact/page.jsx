@@ -5,11 +5,20 @@ export async function generateMetadata({ params }) {
   return {
     title: locale === 'pt' ? 'Contato' : 'Contact',
     description: locale === 'nl'
-      ? 'Neem contact op met SSUPPLY voor front-end development werk of samenwerkingen.'
+      ? 'Een project in gedachten of gewoon hallo zeggen? Stuur me een e-mail en ik kom bij je terug.'
       : locale === 'pt'
       ? 'Entre em contato com SSUPPLY para trabalho de desenvolvimento front-end ou colaboracoes.'
-      : 'Get in touch with SSUPPLY for front-end development work or collaborations.',
+      : 'Got a project in mind or just want to say hi? Drop me an email and I\'ll get back to you.',
     openGraph: {
+      type: 'website',
+      siteName: 'SSUPPLY',
+      images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
+      title: locale === 'pt' ? 'Contato' : 'Contact',
+      description: locale === 'nl'
+        ? 'Een project in gedachten of gewoon hallo zeggen? Stuur me een e-mail en ik kom bij je terug.'
+        : locale === 'pt'
+        ? 'Entre em contato com SSUPPLY para trabalho de desenvolvimento front-end ou colaboracoes.'
+        : 'Got a project in mind or just want to say hi? Drop me an email and I\'ll get back to you.',
       url: locale === 'nl' ? 'https://www.seansupply.com/nl/contact' : locale === 'pt' ? 'https://www.seansupply.com/pt/contact' : 'https://www.seansupply.com/contact',
     },
     alternates: {

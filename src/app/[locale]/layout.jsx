@@ -39,7 +39,7 @@ export async function generateMetadata({ params }) {
     metadataBase: new URL('https://www.seansupply.com'),
     ...(isPt && { robots: { index: false, follow: false } }),
     title: 'SSUPPLY — Front-end Developer Portfolio',
-    description: 'Front-end developer based in Rotterdam. Specialised in React, Next.js, and TypeScript. Building pixel-perfect interfaces.',
+    description: 'Front-end developer and web designer based in Rotterdam. I build fast, modern websites and web apps using React and Next.js.',
     icons: { icon: '/favicon.png' },
     openGraph: {
       type: 'website',
